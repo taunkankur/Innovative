@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+ <script type="text/javascript">
+ var name;
+	$(document).ready(function() {
+		$("#tabs" ).tabs( { active: 0 } );
+		 $('#tabs').tabs({
+	           activate: function(event ,ui){
+	               //console.log(event);
+	               
+	               var tabOption=ui.newTab.index();
+	               
+	               if(tabOption==0){
+		            	  $("#ifDescription").attr(	"src","UtilityJSP/Description.jsp?SearchName="+parent.selectedWord);
+		              }
+	               if(tabOption==1){
+		            	  $("#ifArticle").attr(	"src","UtilityJSP/Article.jsp?SearchName="+parent.selectedWord);
+		              }
+	               if(tabOption==2){
+		            	  $("#ifVideo").attr(	"src","UtilityJSP/YouTubeVideo.jsp?SearchName="+parent.selectedWord);
+		              }
+	               if(tabOption==3){
+		            	  $("#ifSlides").attr(	"src","UtilityJSP/Slides.jsp?SearchName="+parent.selectedWord);
+		              }
+	              if(tabOption==4){
+	            	  $("#ifBooks").attr(	"src","UtilityJSP/BookPage.jsp?SearchName="+parent.selectedWord);
+	              }
+
+	           }
+	});
+		$("#button").click(function(event){
+	    	  
+			   
+	    	  $("#tabs" ).tabs( { active: 0 } );
+		     
+	    	    
+	  	
+	      });
+		$("#idAjaxCall").click(function(event) {
+			alert('h');
+			$.ajax({
+				type : "Get",
+				url : "TabController?Nodetype=hey",
+				success : function(data) {
+
+				},
+				error : function() {
+					alert(" Can not Check status --Err");
+
+				}
+			});
+		});
+
+	});
+	
+	function Reset(){
+		 $("#tabs" ).tabs( { active: 0 } );
+	}
+	
+	
+	function ResetSearchvalue( searchName){
+		name=searchName
+	}
+	
+	function LoadDescription(){
+		 $("#ifDescription").attr(	"src","UtilityJSP/Description.jsp?SearchName="+parent.selectedWord);
+	}
+ </script>
+
+</head>
+<body>
+<div id="tabs" >
+
+						<ul >
+							<li ><a href="#Description" >Description</a></li>
+							<li ><a href="#Article" >Article</a></li>
+							<li ><a href="#Video">Video</a></li>
+							<li ><a href="#Slides" >Slides</a></li>
+							<li ><a href="#Books" >Books</a></li>
+
+						</ul>
+
+						<div id="Description" >
+							<iframe id="ifDescription" width="100%" height="635px"
+								style="border: none;"></iframe>
+						</div>
+						<div id="Article" >
+							<iframe id="ifArticle" width="100%" height="635px"
+								style="border: none;"></iframe>
+						</div>
+						<div id="Video" >
+							<iframe id="ifVideo" width="100%" height="635px"
+								style="border: none;"></iframe>
+						</div>
+						<div id="Slides" >
+							<iframe id='ifSlides' width="100%" height="635px" style="border: none;"></iframe>
+						</div>
+						<div id="Books" >
+							<iframe id="ifBooks" width="100%" height="635px"
+								style="border: none; overflow: hidden; " scrolling="no"  ></iframe>
+						</div>
+
+
+					</div>
+</body>
+</html>
