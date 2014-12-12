@@ -28,13 +28,15 @@ public class YoutubeVideoLogic {
 	    Document doc = builder.newDocument();
 	    Element results = doc.createElement("Results");
 	    doc.appendChild(results);
-		ResultSet rs=con.createStatement().executeQuery("select * from classesvedio where ClassName=\""+queryString+"\"");
+		ResultSet rs=con.createStatement().executeQuery("select * from ClassesVedio where ClassName=\""+queryString+"\"");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		 int colCount = rsmd.getColumnCount();
 		 while (rs.next()) {
+			 
 		      Element row = doc.createElement("Row");
 		      results.appendChild(row);
 		      for (int i = 1; i <= colCount; i++) {
+		    	  System.out.println(rsmd.getColumnName(i));
 		        String columnName = rsmd.getColumnName(i);
 		        Object value = rs.getObject(i);
 		        Element node = doc.createElement(columnName);

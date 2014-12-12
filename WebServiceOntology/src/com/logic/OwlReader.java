@@ -32,7 +32,7 @@ public class OwlReader {
 //	static final String inputFileName = System.getProperty("user.dir")+"\\OwlFile\\SecOntV2.owl";
 
 	public static void main(String[] args) throws Exception {
-		System.out.println(new OwlReader().getOwlData("SmartCard"));
+//		System.out.println(new OwlReader().getOwlData("SmartCard"));
 		System.out.println(new OwlReader().getBookPage("SmartCard"));
 	}
 
@@ -205,7 +205,8 @@ public class OwlReader {
 		Document doc = null;
 		try {
 			builder = factory.newDocumentBuilder();
-			doc = builder.parse(fileName);
+			doc=builder.parse(getClass().getResourceAsStream(fileName));
+//			doc = builder.parse(fileName);
 			XPathFactory xpathFactory = XPathFactory.newInstance();
 
 			XPath xpath = xpathFactory.newXPath();

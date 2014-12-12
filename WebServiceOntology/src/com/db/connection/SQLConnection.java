@@ -6,6 +6,9 @@ import java.sql.DriverManager;
 
 public  class SQLConnection {
 
+	public static void main(String[] args) {
+		System.out.println(SQLConnection.getConnection());
+	}
 	
 
 	public static Connection getConnection() {
@@ -27,7 +30,8 @@ public  class SQLConnection {
 			
 			
 		} catch (Exception e) {
-			System.out.println("Connection Failure to the database");
+			e.printStackTrace();
+			System.out.println("Connection Failure to the database.");
 		}
 		return conn;
 	}
