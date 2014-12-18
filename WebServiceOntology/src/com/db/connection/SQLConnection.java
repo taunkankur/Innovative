@@ -13,7 +13,7 @@ public  class SQLConnection {
 
 	public static Connection getConnection() {
 		Connection conn=null;
-		String url = "jdbc:mysql://localhost:3306/";
+		String url = "jdbc:mysql://cis.csi.cuny.edu:3306/";
 		String dbName = "secont";
 		String driver = "com.mysql.jdbc.Driver";
 		String userName = "root";
@@ -26,7 +26,8 @@ public  class SQLConnection {
 		 */
 		try {
 			Class.forName(driver).newInstance();
-			conn = DriverManager.getConnection(url + dbName, userName, password);
+			conn=DriverManager.getConnection("jdbc:mysql://cis.csi.cuny.edu:3306/secont?user=root&password=soon1234&useUnicode=true&characterEncoding=UTF-8");
+//			conn = DriverManager.getConnection(url + dbName, userName, password);
 			
 			
 		} catch (Exception e) {
@@ -36,3 +37,4 @@ public  class SQLConnection {
 		return conn;
 	}
 }
+

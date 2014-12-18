@@ -54,11 +54,12 @@ public class Tree {
 		
 		if(focusNode!=null){
 			
+			
+			
 			inOrderTraversal(focusNode.leftNode);
+			inOrderTraversal(focusNode.rightNode);
 			
 			System.out.println(focusNode.key+" AND "+focusNode.name);
-			
-			inOrderTraversal(focusNode.rightNode);
 		}
 	}
 }

@@ -80,7 +80,7 @@ function  loadMe() {
 
 function loadXMLDoc() {
 	xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "http://localhost:8080/WebServiceOntology/rest/api/book/"+searchName, false );
+    xmlHttp.open( "GET", "http://cis.csi.cuny.edu:8080/WebServiceOntology/rest/api/book/"+searchName, false );
     xmlHttp.send( null );
     
     return xmlHttp.responseText;
