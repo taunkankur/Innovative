@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<style type="text/css">
+
+</style>
+ <script type="text/javascript">
+
+ var name;
+	$(document).ready(function() {
+		$("#tabs" ).tabs( { active: 0 } );
+		 $('#tabs').tabs({
+	           activate: function(event ,ui){
+	               //console.log(event);
+	               
+	               var tabOption=ui.newTab.index();
+	               
+	               if(tabOption==0){
+		            	  $("#ifDescription").attr(	"src","UtilityJSP/Description.jsp?SearchName="+parent.selectedWord);
+		              }
+	               if(tabOption==1){
+		            	  $("#ifArticle").attr(	"src","UtilityJSP/Article.jsp?SearchName="+parent.selectedWord);
+		              }
+	               if(tabOption==2){
+		            	  $("#ifVideo").attr(	"src","UtilityJSP/YouTubeVideo.jsp?SearchName="+parent.selectedWord);
+		              }
+	               if(tabOption==3){
+		            	  $("#ifSlides").attr(	"src","UtilityJSP/Slides.jsp?SearchName="+parent.selectedWord);
+		              }
+	              if(tabOption==4){
+	            	  $("#ifBooks").attr(	"src","UtilityJSP/BookPage.jsp?SearchName="+parent.selectedWord);
+	              }
+
+	           }
+	});
+		
+		$("#idAjaxCall").click(function(event) {
+			alert('h');
+			$.ajax({
+				type : "Get",
+				url : "TabController?Nodetype=hey",
+				success : function(data) {
+
+				},
+				error : function() {
+					alert(" Can not Check status --Err");
+
+				}
+			});
+		});
+
+	});
+	
+	function Reset(){
+		 $("#tabs" ).tabs( { active: 0 } );
+	}
+	
+	
+	function ResetSearchvalue( searchName){
+		name=searchName
+	}
+	
+	function LoadDescription(){
+		 $("#ifDescription").attr(	"src","UtilityJSP/Description.jsp?SearchName="+parent.selectedWord);
+	}
+ </script>
+<style type="text/css">
+ html, body    {
+  height:99%;
+}
+</style>
+</head>
+<body>
+<div id="tabs" style="height:99%;" >
+
+						<ul >
+							<li ><a href="#Description" >Description</a></li>
+							<li ><a href="#Article" >Article</a></li>
+							<li ><a href="#Video">Video</a></li>
+							<li ><a href="#Slides" >Slides</a></li>
+							<li ><a href="#Books" >Books</a></li>
+
+						</ul>
+
+						<div id="Description" style="height:90%;">
+							<iframe id="ifDescription" width="100%" height="100%"
+								style="border: none;"></iframe>
+						</div>
+						<div id="Article"  style="height:90%;" align="left">
+							<iframe id="ifArticle" width="100%" height="100%"
+								style="border: none;"></iframe>
+						</div>
+						<div id="Video" style="height:90%;">
+							<iframe id="ifVideo" width="100%" height="100%"
+								style="border: none;"></iframe>
+						</div>
+						<div id="Slides" style="height:90%;">
+							<iframe id='ifSlides' width="100%" height="100%" style="border: none;"></iframe>
+						</div>
+						<div id="Books" style="height:90%;">
+							<iframe id="ifBooks" width="100%" height="100%"
+								style="border: none; overflow: hidden; " scrolling="no"  ></iframe>
+						</div>
+
+
+					</div>
+</body>
+</html>
