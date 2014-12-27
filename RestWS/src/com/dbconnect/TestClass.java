@@ -20,7 +20,9 @@ import org.w3c.dom.Element;
 
 public class TestClass {
 
-	
+	public static void main(String[] args) {
+		System.out.println(new TestClass().getXML("Confidentiality"));
+	}
 	
 	public String getXML(String queryString) {
 			try {

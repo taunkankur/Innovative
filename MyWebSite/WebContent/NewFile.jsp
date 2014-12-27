@@ -70,7 +70,7 @@ html, body    {
 <tr>
 <td width="10%"><img  id="image" alt="" src="" width="100%" ></td>
 <td width="10%"></td>
-<td width="10%"><img alt="" src="Image/profile.jpg" width="100%" > </td>
+<td width="10%"><img alt="" src="Image/profile.jpg" width="100%" style="box-shadow: 10px 10px 5px #888888;"> </td>
 <td width="40%" align="center" valign="middle"><h4 class="heading" >" Visualize the Future and Encash it in Present "</h4></td>
 <td width="30%" align="right"><img alt="" src="Image/njit-logo.jpg" width="80%" ></td>
 </tr>
@@ -82,7 +82,7 @@ html, body    {
 <table border="0" width="100%" style="height: 95%;">
 <tr>
 <td width="15%" align="center">
-<div id='cssmenu'>
+<div id='cssmenu'  style="box-shadow: 10px 10px 5px #888888;">
 <ul>
    <li><a href='HTML/AboutMe.html' target="iframe_a"><span style="font-family: Arial, Sans-Serif; font-size: 15px" >About</span></a></li>
    <li><a href='HTML/News.html' target="iframe_a" ><span style="font-family: Arial, Sans-Serif; font-size: 15px">News</span></a></li>
@@ -114,13 +114,18 @@ html, body    {
 
 <div >                      
     <a href="Document/Ankur_Taunk_Resume.pdf" target="_blank" style="text-decoration: none">
-        <img src="Image/PDF-download.png" style="border: 0; float: none;"  width="50px" height="50px" /> 
+        <img src="Image/PDF-download.png" style="border: 0; float: none; "  width="50px" height="50px"  /> 
         <span>Resume</span>
     </a>  
+    <br>
+    <a href="https://github.com/taunkankur" target="_blank" style="text-decoration: none">
+        <img src="Image/Git.jpg" style="border: 0; float: none; "  width="50px" height="50px"  /> 
+        <span>Repository</span>
+    </a> 
 </div>
 </td>
 <td>
-<iframe name="iframe_a" width="97%"  height="100%" src="HTML/AboutMe.html"  scrolling="auto" style="border-style: none inset inset none;"></iframe>
+<iframe name="iframe_a" width="97%"  height="100%" src="HTML/AboutMe.html"  scrolling="auto" style="border-style: none inset inset none; box-shadow: 10px 10px 5px #888888;"  ></iframe>
 </td>
 </tr>
 </table>
