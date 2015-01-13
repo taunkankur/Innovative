@@ -7,11 +7,16 @@
 <title>Ankur Taunk..</title>
 <link rel="stylesheet" href="Style/styles.css">
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css"/>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <script type="text/javascript">
 
 var ImageCount=0;
 
 function loadImage(){
+	
+	callAjax();
 	$('#image').attr('src','Image/back3.jpg');
  	var cars = ["back3", "back9","back7"];
 	ImageCount=cars.length;
@@ -38,9 +43,20 @@ function loadImage(){
 }
 
 
+function callAjax(){
+	
+	$.ajax({
+    type: "GET",
+    url: "/do",
+    async: false,
+ 	success: function (d) {
+ 	
+    },
+    error: function () {
+          }
+});
 
-
-
+};
 </script>
 <style type="text/css">
 #footer {

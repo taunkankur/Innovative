@@ -9,15 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>NewFile.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
-    <servlet-name>WSOntologyCall</servlet-name>
-    <servlet-class>com.servlet.WSOntologyCall</servlet-class>
+    <servlet-name>Controller</servlet-name>
+    <servlet-class>com.servlet.Controller</servlet-class>
   </servlet>
-
   <servlet-mapping>
-    <servlet-name>WSOntologyCall</servlet-name>
-    <url-pattern>*.do</url-pattern>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>/do</url-pattern>
   </servlet-mapping>
-
 </web-app>
