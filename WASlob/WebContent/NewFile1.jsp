@@ -1,111 +1,186 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="./Script/sortable.js"></script> 
-<link href="http://www.joostdevalk.nl/" rev="made" />
 
-<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="http://resources/demos/style.css">
+<script src="./Script/jquery/jquery.js" type="text/javascript"></script>
+<script src="./Script/jquery/jquery-ui.custom.js" type="text/javascript"></script>
+<script src="./Script/jquery/jquery.cookie.js" type="text/javascript"></script>
+<script src="./Script/DynamicTree/jquery.dynatree.js"	type="text/javascript"></script>
+<script src="./Script/DynamicTree/DynTree.js" type="text/javascript"></script>
+<link href="./Script/DynamicTree//skin/ui.dynatree.css" rel="stylesheet"
+	type="text/css">
+
+
 <script type="text/javascript">
-$(document).ready(function() 
-	    { 
-	        $("#myTable").tablesorter(); 
-	    } 
-	);
+
+	var ImageCount = 0;
+
+	function loadImage() {
+		
+		
+		 
+		//autoCompl();
+		 
+		$('#image').attr('src', 'Image/nsf.jpg');
+		var cars = [ "nsf.jpg", "nsf.jpg", "nsf.jpg" ];
+		ImageCount = cars.length;
+		setInterval(function() {
+			if (ImageCount === 0) {
+				ImageCount = cars.length - 1;
+			} else {
+				ImageCount--;
+			}
+
+			var src = $(this).attr("src");
+			$("#image").fadeOut(function() {
+				$(this).attr("src", 'Image/' + cars[ImageCount]).fadeIn();
+			});
+			//$("#image").fadeOut(
+			//function(){
+			// $("#image").fadeOut('slow').attr('src', 'Image/'+cars[ImageCount]+'.jpg').fadeIn('slow');
+			//  }
+			//); // end fadeOut
+
+		}, 3000);
+
+	}
+	
+	$(document).ready(function() {
+	    $("#idSearchButton").click(function(){
+	    	selectedWord=$('#idSearchText').val();
+	    	togglLable( selectedWord);
+	    	var iframe = document.getElementById("resultFrame");
+	    	iframe.contentWindow.ResetSearchvalue(selectedWord);
+	    	
+	    	iframe.contentWindow.reloadPageTreeView();
+			//iframe.contentWindow.LoadDescription();
+			
+			//iframe.contentWindow.Reset();
+	    	
+	    }); 
+	});
+	
+	function togglLable( searchValue){
+		$('#idLable').html(searchValue);
+	}
+	
 </script>
-<style type="text/css">
-/* Copyright 2006 Joost de Valk */
-a img {
-	border: 0;
+
+<script>
+
+  
+	 $(document).ready(function() {
+	
+
+	  var availableTags;
+    $.ajax({
+        type: "GET",
+        url: "WSOntologyCall.do?searchType=Json&searchFor=None",
+     
+        async: false,
+     	success: function (d) {
+     		
+     		availableTags=d.split(',');
+     		
+        },
+        error: function () {
+            alert('Error');
+        }
+    });   
+    
+
+    $( "#idSearchText" ).autocomplete({
+      source: availableTags
+    });
+  }); 
+  </script>
+
+ <style>
+ #footer {
+  /* position:absolute;*/
+  
+   width:99.5%;
+   height:20px;   /* Height of the footer */
+   background:#c2c6b3;
 }
-table.sortable {
-	border-spacing: 0;
-	border: 1px solid #000;
-	border-collapse: collapse;
+  .ui-autocomplete {
+    max-height: 250px;
+    max-width: 305px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: auto;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  * html .ui-autocomplete {
+    height: 250px;
+    width: 305px
+  }
+  html, body    {
+  height: 99%;
 }
-table.sortable th, table.sortable td {
-	text-align: left;
-	padding: 2px 4px 2px 4px;
-	width: 100px;
-	border-style: solid;
-	border-color: #444;
-}
-table.sortable th {
-	border-width: 0px 1px 1px 1px;
-	background-color: #ccc;
-}
-table.sortable td {
-	border-width: 0px 1px 0px 1px;
-}
-table.sortable tr.odd td {
-	background-color: #ddd;
-}
-table.sortable tr.even td {
-	background-color: #fff;
-}
-table.sortable tr.sortbottom td {
-	border-top: 1px solid #444;
-	background-color: #ccc;
-	font-weight: bold;
-}
-</style>
+  </style>
 </head>
-<body>
-<table class="sortable" id="anyid" cellpadding="0" cellspacing="0">
-<tr>
-	<th>Numbers</th>
-	<th>Alphabet</th>
-	<th>Dates</th>
-	<th>Currency</th>
-	<th class="unsortable">Unsortable</th>
-</tr>
-<tr>
-	<td>1</td>
-	<td>Z</td>
-	<td>01-01-2006</td>
-	<td>&euro; 5.00</td>
-	<td>Unsortable</td>
-</tr>
-<tr>
-	<td>2</td>
-	<td>y</td>
-	<td>04-13-2005</td>
-	<td>&euro; 6.70</td>
-	<td>Unsortable</td>
-</tr>
-<tr>
-	<td>3</td>
-	<td>X</td>
-	<td>08-17-2006</td>
-	<td>&euro; 6.50</td>
-	<td>Unsortable</td>
-</tr>
-<tr>
-	<td>4</td>
-	<td>w</td>
-	<td>01-01-2005</td>
-	<td>&euro; 4.20</td>
-	<td>Unsortable</td>
-</tr>
-<tr>
-	<td>5</td>
-	<td>V</td>
-	<td>05-12-2006</td>
-	<td>&euro; 7.15</td>
-	<td>Unsortable</td>
-</tr>
-<tr class="sortbottom">
-	<td>15</td>
-	<td></td>
-	<td></td>
-	<td>&euro; 29.55</td>
-	<td></td>
-</tr>
-</table>
- 
+<body onload="loadImage()">
+
+
+	<div id="idHeader" align="center" style="height: 6%; ">
+		<table border="0" >
+			<tr >
+				<td  ><img alt="" id="image" height="60px"></td>
+				<td ><img alt="" src="Image/SLOBLogo.JPG" height="50px" ></td>
+				
+			</tr>
+		</table>
+	</div>
+
+
+
+
+	<hr width="100%">
+	
+	
+	
+	<div id="idBody"align="center" style="height: 95%;">
+		<table border="0"  width="100%" height="100%">
+			<tr>
+			
+				<td  style=" width: 17%" valign="top">
+				<br><br><br><br><br><br>
+				<table border="0"  style="position: fixed;">
+				<tr><td><div style="height: 60px; width: 300px"  align="center"><label id="idLable" style="color: grey;font: italic bold 20px/30px Georgia, serif;" > Select or Enter Word</label></div></td></tr>
+				<tr><td> <div id="tree" style="height: 400px; width: 300px; " ></div></td></tr>
+				<tr><td><br><input type="text" size="20" id='idSearchText' class="ui-widget" style="">
+				<input type="button" value="Search" id='idSearchButton' style="height: 27px"></td></tr>
+				</table>
+				
+			
+				
+				
+			
+					 
+				
+				</td>
+				<td><iframe  style="border: none;height: 99%" align="middle" id="resultFrame" src="TreeView1.html" width="100%" ></iframe> </td>
+			</tr>
+		</table>
+	</div>
+
+
+	
+	<!-- <div id="idFooter" align="center"><span class="copyright"> 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; © 2014 - All Right Reserved</span></div> -->
+	<div align="center" id="footer" ><span > 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; © 2014 - All Right Reserved</span></div>
+</body>
 </body>
 </html>

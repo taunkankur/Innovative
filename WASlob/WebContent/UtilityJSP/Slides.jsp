@@ -196,8 +196,8 @@ function loadXMLDoc() {
 </head>
 
 <body onload='loadMe()'>
-
-<div id="idContainer" >
+<br><br>
+<div id="idContainer" align="center" >
 
 <table border="1" id="table_id" class="sortable pure-table" style="width: 96%; box-shadow: 10px 10px 5px #888888;" >
 <thead>

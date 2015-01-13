@@ -31,12 +31,16 @@ $(function() {
 							
 							 
 								selectedWord=node.data.title;
+								
 								togglLable( selectedWord);
+								
 								iframe.contentWindow.ResetSearchvalue(selectedWord);
 								
-								iframe.contentWindow.LoadDescription();
+								iframe.contentWindow.reloadPageTreeView();
 								
-								iframe.contentWindow.Reset();
+								//iframe.contentWindow.LoadDescription();
+								
+								
 							
 							
 							},

@@ -165,12 +165,12 @@ function  loadMe() {
       });
 }
 
-function loadXMLDoc() {
-/* 	xmlHttp = new XMLHttpRequest();
+/*  function loadXMLDoc() {
+ 	xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "http://ec2-54-148-7-18.us-west-2.compute.amazonaws.com/rest/api/article/"+searchName, false );
     xmlHttp.send( null );
     
-    return xmlHttp.responseText; */
+    return xmlHttp.responseText; 
     
     
     $.get("http://localhost:8080/WSOntology/rest/api/article/"+searchName,
@@ -178,12 +178,13 @@ function loadXMLDoc() {
     	return data;
     		    alert("Data Loaded: " + data);
     		  });
-}
+}  */
 </script>
 </head>
 <body onload="loadMe()" >
-<div class="CSSTableGenerator" >
-<table id="myTable" border="1" align="left" class=" pure-table pure-table-bordered " style="box-shadow: 10px 10px 5px #888888;" width="98%">
+<br><br>
+<div class="CSSTableGenerator" align="center">
+<table id="myTable" border="1" align="center" class=" pure-table pure-table-bordered " style="box-shadow: 10px 10px 5px #888888;" width="98%">
 <thead >
         <tr>
             <th align="center" >DBLP Article</th>

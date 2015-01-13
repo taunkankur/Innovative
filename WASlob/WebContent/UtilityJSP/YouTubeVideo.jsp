@@ -61,9 +61,27 @@ function buttonAction(action,ClassName,VedURL){
 </script>
 <script type="text/javascript">
 
+
+$(document).ready(function() {
+	
+	
+		$('#idSaved').click(function(){
+			$('#idOrignal').hide();
+			$('#idPinned').show();
+			
+		});
+		
+		$('#idUnSaved').click(function(){
+			$('#idOrignal').show();
+			$('#idPinned').hide();
+		});
+});
+
 var searchName;
 function  loadMe() {
+	
 	$('#idContainer').show();
+	$('#idPinned').hide();
 		$('#idNoVideo').hide();
 	 $('#idNoSaveVideo').hide();
 	divClonePinned = $("#idPinned").clone(); 
@@ -85,6 +103,18 @@ function  loadMe() {
 	
 	searchName=$.QueryString["SearchName"];
 	
+	searchAllBookPage();
+    	
+   
+      
+/*      $('#table_id1').DataTable();
+     $('#table_id2').DataTable();  */
+    
+
+}
+
+
+function searchAllBookPage(){
 	var xml;
 	 $.ajax({
 	        type: "GET",
@@ -105,61 +135,55 @@ function  loadMe() {
 	            alert('Error');
 	        }
 	    });
-    
-	 var pinned=false;
-  
-     xmlDoc = $.parseXML( xml ),
-     $xml = $( xmlDoc );
-     console.log($xml);
-     $($xml).find("Results>Row").each(function(){
-     
-    	 if($(this).attr('Pinned')==1){
-    	
-    		 pinned=true;
-    		 var videoValues={};
-    		 videoValues. ClassName=$(this).find('Results>Row>ClassName').text();
-    		 videoValues. VedTitle=$(this).find('Results>Row>VedTitle').text();
-    		 videoValues. VedThumbNail=$(this).find('Results>Row>VedThumbNail').text();
-    		 videoValues. VedURL=$(this).find('Results>Row>VedURL').text();
-    		 videoValues. ViewCount=$(this).find('Results>Row>ViewCount').text();
-    		 videoValues. NumLikes=$(this).find('Results>Row>NumLikes').text();
-    		 videoValues. NumDislikes=$(this).find('Results>Row>NumDislikes').text();
-    		 videoValues. NumRaters=$(this).find('Results>Row>NumRaters').text();
-    		 videoValues. PublishedDateTime=$(this).find('Results>Row>PublishedDateTime').text();
-    		 appednUnPinnedData(videoValues);
-    		 //$('#table_id2 > tbody:last').append('<tr> <td> <img alt="" src="'+videoValues.VedThumbNail+'"> </td><td><a class="youtube"  href="" id="'+videoValues.VedURL+'">'+videoValues.VedTitle+'</a></td><td>'+videoValues.ViewCount+'</td><td>'+videoValues.NumLikes+'</td><td>'+videoValues.NumDislikes+'</td><td>'+videoValues.NumRaters+'</td><td>'+videoValues.PublishedDateTime+'</td><td><input type="button" id="idSave" value="Delete" onclick="buttonAction(\'VideoUnPin\',\''+videoValues.ClassName+'\',\''+videoValues.VedURL+'\')"/></td></tr>');
-		       
-    	 }else{
-    		 
-    		 var videoValues={};
-    		 videoValues.ClassName=$(this).find('Results>Row>ClassName').text();
-    		 videoValues. VedTitle=$(this).find('Results>Row>VedTitle').text();
-    		 videoValues. VedThumbNail=$(this).find('Results>Row>VedThumbNail').text();
-    		 videoValues. VedURL=$(this).find('Results>Row>VedURL').text();
-    		 videoValues. ViewCount=$(this).find('Results>Row>ViewCount').text();
-    		 videoValues. NumLikes=$(this).find('Results>Row>NumLikes').text();
-    		 videoValues. NumDislikes=$(this).find('Results>Row>NumDislikes').text();
-    		 videoValues. NumRaters=$(this).find('Results>Row>NumRaters').text();
-    		 videoValues. PublishedDateTime=$(this).find('Results>Row>PublishedDateTime').text();
-    		 appednPinnedData(videoValues);
-    		// $('#table_id1 > tbody:last').append('<tr> <td> <img alt="" src="'+videoValues.VedThumbNail+'"> </td><td><a class="youtube"  href="" id="'+videoValues.VedURL+'">'+videoValues.VedTitle+'</a></td><td>'+videoValues.ViewCount+'</td><td>'+videoValues.NumLikes+'</td><td>'+videoValues.NumDislikes+'</td><td>'+videoValues.NumRaters+'</td><td>'+videoValues.PublishedDateTime+'</td><td><input type="button" id="idSave" value="Save" onclick="buttonAction(\'VideoPin\',\''+videoValues.ClassName+'\',\''+videoValues.VedURL+'\')"/></td></tr>');     
-    		       
-    	 }
-    	
    
-      });
-/*      $('#table_id1').DataTable();
-     $('#table_id2').DataTable();  */
-     if(pinned==false){
+	 var pinned=false;
+ 
+    xmlDoc = $.parseXML( xml ),
+    $xml = $( xmlDoc );
+    console.log($xml);
+    $($xml).find("Results>Row").each(function(){
+    
+   	 if($(this).attr('Pinned')==1 ){
+   	
+   		 pinned=true;
+   		 var videoValues={};
+   		 videoValues. ClassName=$(this).find('Results>Row>ClassName').text();
+   		 videoValues. VedTitle=$(this).find('Results>Row>VedTitle').text();
+   		 videoValues. VedThumbNail=$(this).find('Results>Row>VedThumbNail').text();
+   		 videoValues. VedURL=$(this).find('Results>Row>VedURL').text();
+   		 videoValues. ViewCount=$(this).find('Results>Row>ViewCount').text();
+   		 videoValues. NumLikes=$(this).find('Results>Row>NumLikes').text();
+   		 videoValues. NumDislikes=$(this).find('Results>Row>NumDislikes').text();
+   		 videoValues. NumRaters=$(this).find('Results>Row>NumRaters').text();
+   		 videoValues. PublishedDateTime=$(this).find('Results>Row>PublishedDateTime').text();
+   		 appednUnPinnedData(videoValues);
+   		 //$('#table_id2 > tbody:last').append('<tr> <td> <img alt="" src="'+videoValues.VedThumbNail+'"> </td><td><a class="youtube"  href="" id="'+videoValues.VedURL+'">'+videoValues.VedTitle+'</a></td><td>'+videoValues.ViewCount+'</td><td>'+videoValues.NumLikes+'</td><td>'+videoValues.NumDislikes+'</td><td>'+videoValues.NumRaters+'</td><td>'+videoValues.PublishedDateTime+'</td><td><input type="button" id="idSave" value="Delete" onclick="buttonAction(\'VideoUnPin\',\''+videoValues.ClassName+'\',\''+videoValues.VedURL+'\')"/></td></tr>');
+		       
+   	 }else{
+   		 
+   		 var videoValues={};
+   		 videoValues.ClassName=$(this).find('Results>Row>ClassName').text();
+   		 videoValues. VedTitle=$(this).find('Results>Row>VedTitle').text();
+   		 videoValues. VedThumbNail=$(this).find('Results>Row>VedThumbNail').text();
+   		 videoValues. VedURL=$(this).find('Results>Row>VedURL').text();
+   		 videoValues. ViewCount=$(this).find('Results>Row>ViewCount').text();
+   		 videoValues. NumLikes=$(this).find('Results>Row>NumLikes').text();
+   		 videoValues. NumDislikes=$(this).find('Results>Row>NumDislikes').text();
+   		 videoValues. NumRaters=$(this).find('Results>Row>NumRaters').text();
+   		 videoValues. PublishedDateTime=$(this).find('Results>Row>PublishedDateTime').text();
+   		 appednPinnedData(videoValues);
+   		// $('#table_id1 > tbody:last').append('<tr> <td> <img alt="" src="'+videoValues.VedThumbNail+'"> </td><td><a class="youtube"  href="" id="'+videoValues.VedURL+'">'+videoValues.VedTitle+'</a></td><td>'+videoValues.ViewCount+'</td><td>'+videoValues.NumLikes+'</td><td>'+videoValues.NumDislikes+'</td><td>'+videoValues.NumRaters+'</td><td>'+videoValues.PublishedDateTime+'</td><td><input type="button" id="idSave" value="Save" onclick="buttonAction(\'VideoPin\',\''+videoValues.ClassName+'\',\''+videoValues.VedURL+'\')"/></td></tr>');     
+   	      
+   	 }
+   	 if(pinned==false){
     	 $('#idPinned').hide();
     	 $('#idNoSaveVideo').show();
      }
    
     		         
      $("a.youtube").YouTubePopup({ idAttribute: 'id' });
-
+    }); 
 }
-
 function appednUnPinnedData(videoValues){
 	  $('#table_id2 > tbody:last').append('<tr> <td align="center"> <img alt="" src="'+videoValues.VedThumbNail+'"> </td><td  ><a class="youtube"  href="" id="'+videoValues.VedURL+'">'+videoValues.VedTitle+'</a></td><td>'+videoValues.ViewCount+'</td><td>'+videoValues.NumLikes+'</td><td>'+videoValues.NumDislikes+'</td><td>'+videoValues.NumRaters+'</td><td>'+videoValues.PublishedDateTime+'</td><td><input type="button" id="idSave" value="Delete" onclick="buttonAction(\'VideoUnPin\',\''+videoValues.ClassName+'\',\''+videoValues.VedURL+'\')"/></td></tr>');
 }
@@ -262,12 +286,17 @@ table.sortable tr.sortbottom td {
 </head>
 
   <body onload="loadMe()">
-  
+  <br><br>
+  <div id="header" align="center">
+  <input type="button" id="idSaved" value="Favourite Videos">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <input type="button" id="idUnSaved" value=" Genral  Videos ">
+   </div>
+   <br><br>
   <h4 style="color: grey;font: italic bold 20px/30px Georgia, serif;" id="idNoVideo" align="center"> No  Video...  Coming Soon...</h4>
-<div id="idContainer">
+<div id="idContainer" >
 <h4 style="color: grey;font: italic bold 20px/30px Georgia, serif;" id="idNoSaveVideo" align="center"> No Saved Video</h4>
-<div id="idPinned" align="left" >
-<table border="1" id="table_id2" class=" sortable pure-table" style="width: 96%;  box-shadow: 10px 10px 5px #888888;">
+<div id="idPinned" align="center" >
+<table border="1" id="table_id2" class=" sortable pure-table" style="width: 96%; box-shadow: 10px 10px 5px #888888; " align="center">
   <thead>
   <tr>
   <td class=" headerSortDown  " style="width: 3%" align="center"> Video </td>
@@ -286,15 +315,9 @@ table.sortable tr.sortbottom td {
 </table>
 </div>
 
-<br>
-<br>
 
-
-<hr width="98%" style="box-shadow: 10px 10px 5px #888888;">
-<br>
-<br>
-<div id="idOrignal" align="left">
-<table border="1" id="table_id1" class=" sortable pure-table" style="width: 96%; box-shadow: 10px 10px 5px #888888;">
+<div id="idOrignal" align="center">
+<table border="1" id="table_id1" class=" sortable pure-table" style="width: 96%;box-shadow: 10px 10px 5px #888888;">
   <thead>
   <tr>
   <td class="  headerSortDown  " style="width: 3%" align="center"> Video </td>

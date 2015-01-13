@@ -157,7 +157,7 @@ function loadXMLDoc() {
 </head>
 <body onload="loadMe()">
 
-<table class="pure-table" id="idTableDescription" border="1" align="center" width="98%" style="box-shadow: 10px 10px 5px #888888;"> 
+<table class="pure-table" id="idTableDescription" border="1" align="center" width="98%" style=""> 
 <thead><tr><td>Description</td></tr></thead>
   <tbody>
     <tr class="pure-table-odd"></tr>
@@ -182,7 +182,7 @@ function loadXMLDoc() {
 <td valign="top" align="center">
 <div id="idSubClass" style="width:100%; max-height:500px; overflow:auto">
 <ul id="content">
-<li style="list-style-type: none;"><span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>SubClass</span></li>
+<li style="list-style-type: none;"><span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>Direct SubClasses</span></li>
 </ul>
 </div>
 </td>
