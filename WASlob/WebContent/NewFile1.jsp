@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-
+<title>SLOB - Security Learning By Ontology Browsing</title>
+<link rel="shortcut icon" href="Image/nsf.jpg">
+<link rel="apple-touch-icon" href="Image/nsf.jpg">
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
   <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
@@ -156,10 +157,10 @@
 			
 				<td  style=" width: 17%" valign="top">
 				<br><br><br><br><br><br>
-				<table border="0"  style="position: fixed;">
-				<tr><td><div style="height: 60px; width: 300px"  align="center"><label id="idLable" style="color: grey;font: italic bold 20px/30px Georgia, serif;" > Select or Enter Word</label></div></td></tr>
-				<tr><td> <div id="tree" style="height: 400px; width: 300px; " ></div></td></tr>
-				<tr><td><br><input type="text" size="20" id='idSearchText' class="ui-widget" style="">
+				<table border="0"  style="width:100%;  border-collapse:collapse;    table-layout:fixed;">
+				<tr><td><div align="center"><label id="idLable" style="color: grey;font: italic bold 20px/30px Georgia, serif;" > Select or Enter Word</label></div></td></tr>
+				<tr><td> <div id="tree" style="height: 500px"></div></td></tr>
+				<tr><td><br><input type="text"  id='idSearchText' class="ui-widget" style="width: 80%" >
 				<input type="button" value="Search" id='idSearchButton' style="height: 27px"></td></tr>
 				</table>
 				

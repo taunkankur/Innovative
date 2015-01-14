@@ -17,9 +17,10 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <script type="text/javascript">
-
+var pageNumber;
 var searchName;
 function  loadMe() {
+	
 	
 	(function($) {
 	    $.QueryString = (function(a) {
@@ -36,15 +37,19 @@ function  loadMe() {
 	})(jQuery);
 	
 	searchName=$.QueryString["SearchName"];
+	pageNumber=$.QueryString["pageNumber"];
 	if(searchName==="refresh"){
 		
 	}
 	
+ if(pageNumber.indexOf('.') >= 0)
+pageNumber=pageNumber.split('.')[1].trim(); 
+
 	var xml;
 	 $.ajax({
 	        type: "GET",
 	        url: "WSOntologyCall.do?searchType=Book&searchFor="+searchName,
-	      //  contentType: "application/json; charset=utf-8",
+	
 	        async: false,
 	     	success: function (d) {
 	     		 xml=d;
@@ -75,12 +80,13 @@ function  loadMe() {
     });
     
      
+     $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.69.157.61:8080/BooKPage/GoodRichPage/'+pageNumber +'.docx&embedded=true');
      $(document).ready(function() {
  	    
     	 $('a','#idPageList').click(function(){
     		  var currentAnchor = $(this);
     		  
-    		  $('#idPageView').attr('src','http://docs.google.com/gview?url=http://cis.csi.cuny.edu/slob/static/textbook/goodrich/'+currentAnchor.text() +'.docx&embedded=true');
+    		  $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.69.157.61:8080/BooKPage/GoodRichPage/'+currentAnchor.text() +'.docx&embedded=true');
     		//  alert(currentAnchor.text());
     		  
     		});

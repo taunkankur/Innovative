@@ -33,6 +33,8 @@ function  loadMe() {
 	if(searchName==="refresh"){
 		
 	}
+	$('#idSearchedWord').html(searchName);
+	
 	var xml;
 	 $.ajax({
 	        type: "GET",
@@ -158,7 +160,7 @@ function loadXMLDoc() {
 <body onload="loadMe()">
 
 <table class="pure-table" id="idTableDescription" border="1" align="center" width="98%" style=""> 
-<thead><tr><td>Description</td></tr></thead>
+<thead><tr><td>Description -  <span id="idSearchedWord"></span></td></tr></thead>
   <tbody>
     <tr class="pure-table-odd"></tr>
   </tbody>

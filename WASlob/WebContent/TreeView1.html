@@ -54,13 +54,26 @@ $('#idButtonSlides').click(function(){
 	 $("#idIframePopUp").attr(	"src","UtilityJSP/Slides.jsp?SearchName="+parent.selectedWord);
 });
 		
+ $('#idButtonBooks').click(function(){
+	
+
+		
+
+$("#idIframePopUp").attr(	"src","UtilityJSP/BookPage.jsp?SearchName="+parent.selectedWord+'&pageNumber=*');
+}); 
+ 
+$('#content li').live('click', function ()
+		{
+		    var selected = $(this).text();
+	    
+		    $("#idIframePopUp").attr(	"src","UtilityJSP/BookPage.jsp?SearchName="+parent.selectedWord+'&pageNumber='+selected);
+
+		});
+
+
 	});
 	
-	$('#idButtonBooks').click(function(){
-		
-		 
-		 $("#idIframePopUp").attr(	"src","UtilityJSP/BookPage.jsp?SearchName="+parent.selectedWord);
-	});
+	
 	
 	
 	function ResetSearchvalue( searchName){
@@ -104,9 +117,10 @@ $('#idButtonSlides').click(function(){
 
 	    
 if(i<5){
-	
+	var count=i;
+	count=count+1;
 
-	       $("#idArticleList ul").append('<li style="list-style-type: none;"><a target="_blank" style="color: #000000; text-decoration: none;" href='+$(this).find('title').attr('ee') +'><span class="tab truncate">'+$(this).find('title').text()+'</span></a>	</li>');
+	       $("#idArticleList ul").append('<li style="list-style-type: none;"><a target="_blank" style="color: #000000; text-decoration: none;" href='+$(this).find('title').attr('ee') +'><span class="tab truncate"><b>'+count+'. </b> '+$(this).find('title').text()+'</span></a>	</li>');
 }else{
 	
 }    
@@ -145,9 +159,10 @@ if(i<5){
 			    var VedTitle=$(this).find('Slideshows>Slideshow>Title').text();
 
 			   	 if(i<5){
-		    			
+		    			var count=i;
+		    			count=count+1;
 
-			  	       $("#idSlidesList ul").append('<li style="list-style-type: none;"><a target="_blank" style="color: #000000; text-decoration: none;" href='+$(this).find("URL").text()+'><span class="tab truncate">'+$(this).find("Title").text()+'</span></a>	</li>');
+			  	       $("#idSlidesList ul").append('<li style="list-style-type: none;"><a target="_blank" style="color: #000000; text-decoration: none;" href='+$(this).find("URL").text()+'><span class="tab truncate"><b>'+count+'. </b> '+$(this).find("Title").text()+'</span></a>	</li>');
 			  }else{
 			  	
 			  } 
@@ -186,9 +201,10 @@ if(i<5){
 	     
 	       
 	    		 if(i<5){
-		    			
+		    			var count=i;
+		    			count=count+1;
 
-			  	       $("#idVideoList ul").append('<li style="list-style-type: none;"><a target="_blank" style="color: #000000; text-decoration: none;" href=https://www.youtube.com/watch?v='+$(this).find("VedURL").text()+'><span class="tab truncate">'+$(this).find("VedTitle").text()+'</span></a>	</li>');
+			  	       $("#idVideoList ul").append('<li style="list-style-type: none;"><a target="_blank" style="color: #000000; text-decoration: none;" href=https://www.youtube.com/watch?v='+$(this).find("VedURL").text()+'><span class="tab truncate"><b>'+count+'. </b> '+$(this).find("VedTitle").text()+'</span></a>	</li>');
 			  }else{
 			  	
 			  } 
@@ -227,7 +243,8 @@ if(i<5){
 	    	 
 	    	 if(i<5){
 	    			
-
+var count=i;
+count=count+1;
 		  	      // $("#idVideoList ul").append('<li style="list-style-type: none;"><a target="_blank" style="color: #000000; text-decoration: none;" href=https://www.youtube.com/watch?v='+$(this).find("VedURL").text()+'><span class="tab truncate">'+$(this).find("VedTitle").text()+'</span></a>	</li>');
 		  	      
 	    		 if(i===0 && BookPage[0]===''){
@@ -238,8 +255,9 @@ if(i<5){
 		    	 }else{
 		    		 
 		    		 if(BookPage[i]!==''){
-		    			 $("#idBooksList ul").append('<li style="list-style-type: none;"><a target="_blank" style="color: #000000; text-decoration: none;" ><span class="tab truncate">'+BookPage [i]+'</span></a>	</li>');
-		        		// $('ul').append('<li><a >'+BookPage [i]+'</a></li>');
+		    			 $("#idBooksList ul").append('<li style="list-style-type: none;"><b>'+count+'. </b><a style="color: #000000; text-decoration: none;"  href="#loginScreen" >'+BookPage [i]+'</a></li>');
+		    			 
+		    			 // $('ul').append('<li><a >'+BookPage [i]+'</a></li>');
 		        	 }
 		    	 }
 		  }else{
@@ -250,7 +268,11 @@ if(i<5){
 	    	 
 	    });
 	}
-	
+	function paeLoadFunction(){
+		//$('#idPopusAnchor a').trigger('click');
+		$('#idPopusAnchor')[0].click();
+		    //$("#idPopusAnchor").attr('href','#');
+	}
  </script>
 <style type="text/css">
 
@@ -326,7 +348,7 @@ display:none;
 }
   </style>
 </head>
-<body>
+<body onload="paeLoadFunction()">
 
 
 
@@ -348,8 +370,9 @@ display:none;
 								<div id="Article"  style="height:90%; width: 90%" align="left">
 									<!--  <iframe id="ifArticle" width="100%" height="100%" style="border: none;box-shadow: 10px 10px 5px #888888;" ></iframe>-->
 									<div id="idArticleList" style="overflow:hidden">
-									<ul id="content">
-									<li style="list-style-type: none;"><span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>Article&nbsp;</span> <a  id="idButtonArticle" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a></li>
+									<span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>&nbsp;&nbsp;Article&nbsp;</span> <a  id="idButtonArticle" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a>
+									<ul>
+									<li style="list-style-type: none;"></li>
 									</ul>
 									</div>
 									<br><br>
@@ -361,8 +384,9 @@ display:none;
 								<div id="Video" style="height:90%; width: 90%">
 									<!--  <iframe id="ifVideo" width="100%" height="100%"	style="border: none;box-shadow: 10px 10px 5px #888888;"></iframe>-->
 									<div id="idVideoList" style=" overflow:hidden">
-									<ul id="content">
-									<li style="list-style-type: none;"><span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>Video&nbsp;</span><a  id="idButtonVideo" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a></li>
+									<span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>&nbsp;&nbsp;Video&nbsp;</span><a  id="idButtonVideo" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a>
+									<ul >
+									<li style="list-style-type: none;"></li>
 									</ul>
 									</div>
 									<br><br>
@@ -375,8 +399,9 @@ display:none;
 								<div id="Slides" style="height:90%; width: 90%">
 									<!--  <iframe id='ifSlides' width="100%" height="100%" style="border: none;box-shadow: 10px 10px 5px #888888;"></iframe>-->
 									<div id="idSlidesList" style=" overflow:hidden">
-									<ul id="content">
-									<li style="list-style-type: none;"><span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>Slides&nbsp;</span><a  id="idButtonSlides" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a></li>
+									<span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>&nbsp;&nbsp;Slides&nbsp;</span><a  id="idButtonSlides" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a>
+									<ul >
+									<li style="list-style-type: none;"></li>
 									</ul>
 									</div>
 									<br><br>
@@ -387,8 +412,9 @@ display:none;
 									<div id="Books" style="height:100%; width: 80%">
 										<!--  <iframe id="ifBooks" width="100%" height="100%"	style="border: none; overflow: hidden; box-shadow: 10px 10px 5px #888888;" scrolling="no"  ></iframe>-->
 										<div id="idBooksList" style=" overflow:hidden">
+										<span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>&nbsp;&nbsp;Books&nbsp;</span><a  id="idButtonBooks" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a>
 									<ul id="content">
-									<li style="list-style-type: none;"><span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>Books&nbsp;</span><a  id="idButtonBooks" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a></li>
+									<li style="list-style-type: none;"></li>
 									</ul>
 									</div>
 									<br><br>
@@ -396,12 +422,11 @@ display:none;
 							</td>
 						</tr>
 						
-						
+					
 						</table>
 						</div>
 						
-						  
-    <div id="loginScreen"> <a href="#" class="cancel">&times;</a><iframe id="idIframePopUp" width="100%" height="100%"  src=""></iframe></div> 
+    <div id="loginScreen"> <a id="idPopusAnchor" href="#" class="cancel">&times;</a><iframe id="idIframePopUp" width="100%" height="100%"  src=""></iframe></div> 
     
     
     <div id="cover" > </div> 
