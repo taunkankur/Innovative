@@ -8,59 +8,89 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import com.logic.*;
+import org.apache.log4j.Logger;
 
+import com.logic.*;
 
 @Path("/api")
 public class RestApiMethod {
+	private static org.apache.log4j.Logger log = Logger.getLogger(RestApiMethod.class);
+	
 
 	@Path("/video/{queryString}")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getVideoData(@PathParam("queryString") String queryString) {
-		String returnValue=new YoutubeVideoLogic().getXML(queryString,"at375");
-		System.out.println(returnValue);
-		if(returnValue!=null)
-		return returnValue;
-		else
-			return "false";
-	}
+		queryString = getSearchTerm(queryString).toString();
+		String returnValue = new YoutubeVideoLogic().getXML(queryString,"at375");
 
+		if (returnValue != null){
+			log.info("Return Value : "+returnValue);
+			return returnValue;
+			}
+		else{
+			log.info(returnValue);
+			return "false";
+		}
+			
+	}
 	
+	
+	
+
 	@Path("/videoPin/{className}/{studentId}/{videoId}")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String setVideoPin(@PathParam("className") String className,@PathParam("studentId") String studentId,@PathParam("videoId") String videoId) {
+	public String setVideoPin(@PathParam("className") String className,
+			@PathParam("studentId") String studentId,
+			@PathParam("videoId") String videoId) {
 
-		return Integer.toString(new YoutubeVideoLogic().insertPinVideoData(className,studentId,videoId));
+		return Integer.toString(new YoutubeVideoLogic().insertPinVideoData(
+				className, studentId, videoId));
 	}
+
+	
+	
 	
 	@Path("/videoUnPin/{className}/{studentId}/{videoId}")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String setVideoUnPin(@PathParam("className") String className,@PathParam("studentId") String studentId,@PathParam("videoId") String videoId) {
+	public String setVideoUnPin(@PathParam("className") String className,
+			@PathParam("studentId") String studentId,
+			@PathParam("videoId") String videoId) {
 
-		return Integer.toString(new YoutubeVideoLogic().deletePinVideoData(className,studentId,videoId));
+		return Integer.toString(new YoutubeVideoLogic().deletePinVideoData(
+				className, studentId, videoId));
 	}
+
+	
 	
 	
 	@Path("/article/{queryString}")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getArticleData(@PathParam("queryString") String queryString) {
-
-		String dblpUrl = "http://www.dblp.org/search/api/?q=" + queryString+ "&h=100&c=4&f=0&format=xml";
-		return new DBLPDataFetchLogic().getXML(dblpUrl);
+		log.info("Query String : "+queryString);
+		queryString = getSearchTerm(queryString).toString();
+		String returnValue=new DBLPDataFetchLogic().getXML(queryString);
+		log.info("Return Value : "+returnValue);
+		return returnValue;
 	}
 
+
+	
+	
 	@Path("/description/{queryString}")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getDescriptionData(@Context HttpServletRequest req,@PathParam("queryString") String queryString) {
-		System.out.println(queryString.replaceAll(" ", ""));
+		
 
 		return new OwlReader().getOwlData(queryString.replaceAll(" ", ""));
 	}
+	
+	
+	
 
 	@Path("/book/{queryString}")
 	@GET
@@ -69,21 +99,42 @@ public class RestApiMethod {
 
 		return new OwlReader().getBookPage(queryString.replaceAll(" ", ""));
 	}
+
 	
 	
-	  @Path("/slides/{queryString}")
-	  @GET
-	  @Produces(MediaType.TEXT_PLAIN)
-	  public String getSlideShareData(@PathParam("queryString") String queryString) {
-		 SlideShareDataFetchLogic slFetchLogic= new SlideShareDataFetchLogic();
-		  String secret_key = "lMZ68S5P";
-		long  ts=System.currentTimeMillis()/1000L;  
-		  String h=slFetchLogic.SHA1(secret_key, ts);
-		  System.out.println("h=" +h);
-		  System.out.println("ts="+ts);
-          System.out.println(queryString);
 	
- return  slFetchLogic.getXML("https://www.slideshare.net/api/2/search_slideshows?q="+queryString+"&page=1&items_per_page=50&lang=**&sort=relevance&upload_date=any&fileformat=all&file_type=all&cc=1&cc_adapt=1&cc_commercial=1&api_key=4w4sRJ4G&hash="+h+"&ts="+ts+"");
+	@Path("/slides/{queryString}")
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getSlideShareData(@PathParam("queryString") String queryString) {
 		
-	  }
+		SlideShareDataFetchLogic slFetchLogic = new SlideShareDataFetchLogic();
+		queryString = getSearchTerm(queryString).toString().replace("+", "");
+		log.info(queryString);
+		
+		String returnValue=slFetchLogic.getXML(queryString);
+		log.info(returnValue);
+		return returnValue;
+
+	}
+
+	
+	
+	
+	public StringBuffer getSearchTerm(String searchterm) {
+		String[] word = searchterm
+				.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])");
+
+		StringBuffer concatWord = null;
+		for (String w : word) {
+			if (null != concatWord) {
+				concatWord.append("+");
+				concatWord.append(w);
+			} else 
+				concatWord = new StringBuffer(w);
+		}
+
+		return concatWord;
+
+	}
 }

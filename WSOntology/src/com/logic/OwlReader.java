@@ -32,8 +32,8 @@ public class OwlReader {
 //	static final String inputFileName = System.getProperty("user.dir")+"\\OwlFile\\SecOntV2.owl";
 
 	public static void main(String[] args) throws Exception {
-//		System.out.println(new OwlReader().getOwlData("SmartCard"));
-		System.out.println(new OwlReader().getBookPage("SmartCard"));
+		//System.out.println(new OwlReader().getOwlData("Birthday Attack"));
+		System.out.println(new OwlReader().getBookPage("Password"));
 	}
 
 	public String getOwlData(String queryString) {
@@ -47,7 +47,7 @@ public class OwlReader {
 			JenaOWLModel owlModel = ProtegeOWL
 					.createJenaOWLModelFromInputStream(getClass().getResourceAsStream(fileName));
 			OwlReader owlReader = new OwlReader();
-			OWLNamedClass cls = owlModel.getOWLNamedClass(queryString);
+			OWLNamedClass cls = owlModel.getOWLNamedClass(queryString.replace(" ", ""));
 
 			sBuffer.append("<OwlRootNode>");
 

@@ -4,11 +4,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ResourceBundle;
 
+import org.apache.log4j.Logger;
+
+import com.logic.YoutubeVideoLogic;
+
 
 public  class SQLConnection {
 
-
-	
+	private static org.apache.log4j.Logger log = Logger.getLogger(SQLConnection.class);
+	public static void main(String[] args) {
+		System.out.println(new SQLConnection().getConnection());
+	}
 
 	public  Connection getConnection() {
 		
@@ -37,6 +43,7 @@ public  class SQLConnection {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("DB CONNECTION FAILURE");
 			System.out.println("Connection Failure to the database.");
 		}
 		return conn;
