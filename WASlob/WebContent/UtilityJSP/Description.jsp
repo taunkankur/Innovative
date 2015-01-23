@@ -65,7 +65,7 @@ function  loadMe() {
      if(description!=='' || nistDescription!==''){
     	 
     	 if(description!=='')
-    		 $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>GENRAL : </span>'+description+'</td></tr>');
+    		 $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>GENERAL : </span>'+description+'</td></tr>');
     	 else
     		 $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>GENRAL : </span> NO Description</td></tr>');
     	 

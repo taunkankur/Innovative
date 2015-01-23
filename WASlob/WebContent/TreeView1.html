@@ -23,13 +23,16 @@
 		
 		//$('#idDataTable').hide();
 		
+		
 		$('#idTDArticle').hide();
 		$('#idTDVideo').hide();
 		$('#idTDSlides').hide();
 		$('#idTDBooks').hide();
 		
 		if( typeof parent.selectedWord != "undefined" ){
+			
 			LoadDescription();
+			
 		}
 		else{
 			
@@ -84,20 +87,26 @@ $('#content li').live('click', function ()
 	function LoadDescription(){
 		
 		
+		$('#idWelcome').hide();
+		$('#idInstruction').hide();
 		$('#idDataTable').show();
- 		 $("#ifDescription").attr(	"src","UtilityJSP/Description.jsp?SearchName="+parent.selectedWord);
+ 		 $("#ifDescription").attr(	"src","UtilityJSP/Description.jsp?SearchName="+parent.selectedWord.replace(" ", ""));
  		 
  		loadArticle();
  		loadSlides();
  		loadVideo();
  		loadBook();
+ 		
+ 		parent.hideProcessBar();
+		 parent.showDataTable();
 	}
 	
 	function loadArticle(){
+	
 		var xml;
 		 $.ajax({
 		        type: "GET",
-		        url: "WSOntologyCall.do?searchType=Article&searchFor="+parent.selectedWord,
+		        url: "WSOntologyCall.do?searchType=Article&searchFor="+parent.selectedWord.replace(" ", ""),
 		         async: false,
 		     	success: function (d) {
 		     		$('#idTDVideo').show();
@@ -133,7 +142,7 @@ if(i<5){
 		var xml;
 		 $.ajax({
 		        type: "GET",
-		        url: "WSOntologyCall.do?searchType=Slides&searchFor="+parent.selectedWord,
+		        url: "WSOntologyCall.do?searchType=Slides&searchFor="+parent.selectedWord.replace(" ", ""),
 	
 		        async: false,
 		     	success: function (d) {
@@ -174,7 +183,7 @@ if(i<5){
 		var xml;
 		 $.ajax({
 		        type: "GET",
-		        url: "WSOntologyCall.do?searchType=Video&searchFor="+parent.selectedWord,
+		        url: "WSOntologyCall.do?searchType=Video&searchFor="+parent.selectedWord.replace(" ", ""),
 		 		async: false,
 		     	success: function (d) {
 		     		$('#idTDArticle').show();
@@ -358,10 +367,16 @@ display:none;
 							<iframe id="ifDescription" width="99%" height="100%"
 								style="border: none; " ></iframe>
 						</div>
-						
-						
-						
+						<!-- <div id="idProcessingBar">
+						<img src="Image/loader_wide.gif" alt="">
+						</div> -->
+						<h4 style="color: grey;font: italic bold 20px/30px Georgia, serif;" id="idWelcome" align="center"> Welcome To SLOB...</h4>
 						<hr width="100%">
+						<div id="idInstruction">
+						<h4 style="color: grey;font: italic bold 20px/30px Georgia, serif;"  align="center">Browse the ontology on the left and click  "a term"  you want to learn about...</h4>
+						<h3 style="color: grey;font: italic bold 20px/30px Georgia, serif;" align="center">OR</h3>
+						<h4 style="color: grey;font: italic bold 20px/30px Georgia, serif;" id="idInstruction" align="center">Enter a  keyword you are interested in learning on the bottom search box...</h4>
+						</div>
 						<div style="height:30%; width: 99%" id="idDataTable">
 						<table border="0" style="width: 100% ;height: 50%;" >
 						
@@ -370,10 +385,13 @@ display:none;
 								<div id="Article"  style="height:90%; width: 90%" align="left">
 									<!--  <iframe id="ifArticle" width="100%" height="100%" style="border: none;box-shadow: 10px 10px 5px #888888;" ></iframe>-->
 									<div id="idArticleList" style="overflow:hidden">
-									<span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>&nbsp;&nbsp;Article&nbsp;</span> <a  id="idButtonArticle" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a>
+									<span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>&nbsp;&nbsp;Article...&nbsp;</span> 
 									<ul>
 									<li style="list-style-type: none;"></li>
 									</ul>
+									<div align="right">
+									<a id="idButtonArticle" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a>
+									</div>
 									</div>
 									<br><br>
 									 
@@ -384,10 +402,13 @@ display:none;
 								<div id="Video" style="height:90%; width: 90%">
 									<!--  <iframe id="ifVideo" width="100%" height="100%"	style="border: none;box-shadow: 10px 10px 5px #888888;"></iframe>-->
 									<div id="idVideoList" style=" overflow:hidden">
-									<span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>&nbsp;&nbsp;Video&nbsp;</span><a  id="idButtonVideo" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a>
+									<span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>&nbsp;&nbsp;Video...&nbsp;</span>
 									<ul >
 									<li style="list-style-type: none;"></li>
 									</ul>
+									<div align="right">
+									<a  id="idButtonVideo" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a>
+									</div>
 									</div>
 									<br><br>
 									 
@@ -399,10 +420,13 @@ display:none;
 								<div id="Slides" style="height:90%; width: 90%">
 									<!--  <iframe id='ifSlides' width="100%" height="100%" style="border: none;box-shadow: 10px 10px 5px #888888;"></iframe>-->
 									<div id="idSlidesList" style=" overflow:hidden">
-									<span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>&nbsp;&nbsp;Slides&nbsp;</span><a  id="idButtonSlides" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a>
+									<span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>&nbsp;&nbsp;Slides...&nbsp;</span>
 									<ul >
 									<li style="list-style-type: none;"></li>
 									</ul>
+									<div align="right">
+									<a  id="idButtonSlides" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a>
+									</div>
 									</div>
 									<br><br>
 									 
@@ -412,10 +436,13 @@ display:none;
 									<div id="Books" style="height:100%; width: 80%">
 										<!--  <iframe id="ifBooks" width="100%" height="100%"	style="border: none; overflow: hidden; box-shadow: 10px 10px 5px #888888;" scrolling="no"  ></iframe>-->
 										<div id="idBooksList" style=" overflow:hidden">
-										<span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>&nbsp;&nbsp;Books&nbsp;</span><a  id="idButtonBooks" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a>
+										<span style='color: grey;font: italic bold 30px/40px Georgia, serif;'>&nbsp;&nbsp;Books...&nbsp;</span>
 									<ul id="content">
 									<li style="list-style-type: none;"></li>
 									</ul>
+									<div align="right">
+									<a  id="idButtonBooks" href="#loginScreen" style='color: grey;font: italic bold 15px/20px Georgia, serif;'>Click for More</a>
+									</div>
 									</div>
 									<br><br>
 									</div>

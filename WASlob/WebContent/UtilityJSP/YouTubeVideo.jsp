@@ -103,7 +103,7 @@ function  loadMe() {
 	
 	searchName=$.QueryString["SearchName"];
 	
-	searchAllBookPage();
+	searchAllVideo();
     	
    
       
@@ -114,11 +114,11 @@ function  loadMe() {
 }
 
 
-function searchAllBookPage(){
+function searchAllVideo(){
 	var xml;
 	 $.ajax({
 	        type: "GET",
-	        url: "WSOntologyCall.do?searchType=Video&searchFor="+searchName,
+	        url: "WSOntologyCall.do?searchType=Video&searchFor="+searchName.replace(" ", ""),
 	 		async: false,
 	     	success: function (d) {
 	     		
@@ -159,7 +159,7 @@ function searchAllBookPage(){
    		 appednUnPinnedData(videoValues);
    		 //$('#table_id2 > tbody:last').append('<tr> <td> <img alt="" src="'+videoValues.VedThumbNail+'"> </td><td><a class="youtube"  href="" id="'+videoValues.VedURL+'">'+videoValues.VedTitle+'</a></td><td>'+videoValues.ViewCount+'</td><td>'+videoValues.NumLikes+'</td><td>'+videoValues.NumDislikes+'</td><td>'+videoValues.NumRaters+'</td><td>'+videoValues.PublishedDateTime+'</td><td><input type="button" id="idSave" value="Delete" onclick="buttonAction(\'VideoUnPin\',\''+videoValues.ClassName+'\',\''+videoValues.VedURL+'\')"/></td></tr>');
 		       
-   	 }else{
+   	 }if ($(this).attr('Pinned')==0 ){
    		 
    		 var videoValues={};
    		 videoValues.ClassName=$(this).find('Results>Row>ClassName').text();
@@ -174,6 +174,24 @@ function searchAllBookPage(){
    		 appednPinnedData(videoValues);
    		// $('#table_id1 > tbody:last').append('<tr> <td> <img alt="" src="'+videoValues.VedThumbNail+'"> </td><td><a class="youtube"  href="" id="'+videoValues.VedURL+'">'+videoValues.VedTitle+'</a></td><td>'+videoValues.ViewCount+'</td><td>'+videoValues.NumLikes+'</td><td>'+videoValues.NumDislikes+'</td><td>'+videoValues.NumRaters+'</td><td>'+videoValues.PublishedDateTime+'</td><td><input type="button" id="idSave" value="Save" onclick="buttonAction(\'VideoPin\',\''+videoValues.ClassName+'\',\''+videoValues.VedURL+'\')"/></td></tr>');     
    	      
+   	 }if ($(this).attr('Pinned')==2 ){
+   		 
+   		$('#idPinned').hide();
+   		$('#idOrignal').hide();
+   		$('#header').hide();
+   		pinned=true;
+   		
+   		var videoValues={};
+  		 videoValues.ClassName=$(this).find('Results>Row>ClassName').text();
+  		 videoValues. VedTitle=$(this).find('Results>Row>VedTitle').text();
+  		 videoValues. VedThumbNail=$(this).find('Results>Row>VedThumbNail').text();
+  		 videoValues. VedURL=$(this).find('Results>Row>VedURL').text();
+  		 videoValues. ViewCount=$(this).find('Results>Row>ViewCount').text();
+  		 videoValues. NumLikes=$(this).find('Results>Row>NumLikes').text();
+  		 videoValues. NumDislikes=$(this).find('Results>Row>NumDislikes').text();
+  		 videoValues. NumRaters=$(this).find('Results>Row>NumRaters').text();
+  		 videoValues. PublishedDateTime=$(this).find('Results>Row>PublishedDateTime').text();
+   		appedDynamicVideo(videoValues)
    	 }
    	 if(pinned==false){
     	 $('#idPinned').hide();
@@ -190,6 +208,11 @@ function appednUnPinnedData(videoValues){
 
 function appednPinnedData(videoValues){
 	 $('#table_id1 > tbody:last').append('<tr> <td align="center"> <img alt="" src="'+videoValues.VedThumbNail+'"> </td><td  ><a class="youtube"  href="" id="'+videoValues.VedURL+'">'+videoValues.VedTitle+'</a></td><td>'+videoValues.ViewCount+'</td><td>'+videoValues.NumLikes+'</td><td>'+videoValues.NumDislikes+'</td><td>'+videoValues.NumRaters+'</td><td>'+videoValues.PublishedDateTime+'</td><td><input type="button" id="idSave" value="Save" onclick="buttonAction(\'VideoPin\',\''+videoValues.ClassName+'\',\''+videoValues.VedURL+'\')"/></td></tr>');
+}
+
+
+function appedDynamicVideo(videoValues){
+	 $('#table_id3 > tbody:last').append('<tr> <td align="center"> <img alt="" src="'+videoValues.VedThumbNail+'"> </td><td  ><a class="youtube"  href="" id="'+videoValues.VedURL+'">'+videoValues.VedTitle+'</a></td><td>'+videoValues.ViewCount+'</td><td>'+videoValues.NumLikes+'</td><td>'+videoValues.NumDislikes+'</td><td>'+videoValues.NumRaters+'</td><td>'+videoValues.PublishedDateTime+'</td></tr>');
 }
 
 
@@ -292,6 +315,8 @@ table.sortable tr.sortbottom td {
    <input type="button" id="idUnSaved" value=" Genral  Videos ">
    </div>
    <br><br>
+   
+    
   <h4 style="color: grey;font: italic bold 20px/30px Georgia, serif;" id="idNoVideo" align="center"> No  Video...  Coming Soon...</h4>
 <div id="idContainer" >
 <h4 style="color: grey;font: italic bold 20px/30px Georgia, serif;" id="idNoSaveVideo" align="center"> No Saved Video</h4>
@@ -316,6 +341,7 @@ table.sortable tr.sortbottom td {
 </div>
 
 
+
 <div id="idOrignal" align="center">
 <table border="1" id="table_id1" class=" sortable pure-table" style="width: 96%;box-shadow: 10px 10px 5px #888888;">
   <thead>
@@ -336,6 +362,34 @@ table.sortable tr.sortbottom td {
 </table>
 
 </div>
+
+
+<div id="idDynamicVideo" align="center">
+<table border="1" id="table_id3" class=" sortable pure-table" style="width: 96%;box-shadow: 10px 10px 5px #888888;">
+  <thead>
+  <tr>
+  <td class="  headerSortDown  " style="width: 3%" align="center"> Video </td>
+  <td class=" headerSortDown " style="width: 30%" align="center">Topic</td>
+  <td class=" headerSortDown " style="width: 7%">#View</td>
+  <td class=" headerSortDown " style="width: 7%">#Likes</td>
+  <td class=" headerSortDown " style="width: 7%">#DisLikes</td>
+  <td class=" headerSortDown " style="width: 7%">#Raters</td>
+  <td class=" headerSortDown " style="width: 7%">DateTime</td>
+  
+  </tr>
+  </thead>
+  <tbody>
+   
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+
 <script type="text/javascript">
 $(document).ready(function() 
 	    { 

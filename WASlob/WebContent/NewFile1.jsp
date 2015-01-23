@@ -56,7 +56,12 @@
 	
 	$(document).ready(function() {
 	    $("#idSearchButton").click(function(){
+	    	showProcessBar();
+			hideDataTable();
 	    	selectedWord=$('#idSearchText').val();
+	    	
+	    	selectedWord=capitaliseFirstLetter(selectedWord);
+	    	
 	    	togglLable( selectedWord);
 	    	var iframe = document.getElementById("resultFrame");
 	    	iframe.contentWindow.ResetSearchvalue(selectedWord);
@@ -73,14 +78,38 @@
 		$('#idLable').html(searchValue);
 	}
 	
+	
+	function capitaliseFirstLetter(string)
+	{
+	    return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+	
+
+		
+
 </script>
 
 <script>
+function hideProcessBar(){
+	$('#idProcessingBar').hide();
+}
 
+function showProcessBar(){
+	$('#idProcessingBar').show();
+}
+
+function hideDataTable(){
+	$('#idDataTable').hide();
+	
+}
+
+function showDataTable(){
+	$('#idDataTable').show();
+}
   
 	 $(document).ready(function() {
-	
-
+		 hideProcessBar();
+		 showDataTable();
 	  var availableTags;
     $.ajax({
         type: "GET",
@@ -171,7 +200,14 @@
 					 
 				
 				</td>
-				<td><iframe  style="border: none;height: 99%" align="middle" id="resultFrame" src="TreeView1.html" width="100%" ></iframe> </td>
+				<td>
+				<div id="idProcessingBar">
+				<h4 style="color: grey;font: italic bold 20px/30px Georgia, serif;" id="idNoSaveVideo" align="center"> Form loading. Please wait...</h4>
+						
+						</div>
+						<div id="idDataTable" style="height: 99%" >
+						<iframe  style="border: none;height: 99%" align="middle" id="resultFrame" src="TreeView1.html" width="100%" ></iframe></div> </td>
+				
 			</tr>
 		</table>
 	</div>

@@ -79,14 +79,17 @@ pageNumber=pageNumber.split('.')[1].trim();
     	 
     });
     
-     
-     $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.69.157.61:8080/BooKPage/GoodRichPage/'+pageNumber +'.docx&embedded=true');
+     var offset=20;
+     $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.69.157.61:8080/BooKPage/GoodRichPage/'+((pageNumber*1) + (offset*1)) +'.docx&embedded=true');
      $(document).ready(function() {
  	    
     	 $('a','#idPageList').click(function(){
     		  var currentAnchor = $(this);
+    		  pageNumber=currentAnchor.text();
+    		  pageNumber=((pageNumber*1) + (offset*1));
     		  
-    		  $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.69.157.61:8080/BooKPage/GoodRichPage/'+currentAnchor.text() +'.docx&embedded=true');
+    		  
+    		  $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.69.157.61:8080/BooKPage/GoodRichPage/'+pageNumber +'.docx&embedded=true');
     		//  alert(currentAnchor.text());
     		  
     		});

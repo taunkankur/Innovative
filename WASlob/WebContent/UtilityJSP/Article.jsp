@@ -120,6 +120,8 @@ a:hover {
 var searchName;
 function  loadMe() {
 	
+	
+	
 	(function($) {
 	    $.QueryString = (function(a) {
 	        if (a == "") return {};
@@ -142,10 +144,11 @@ function  loadMe() {
 	var xml;
 	 $.ajax({
 	        type: "GET",
-	        url: "WSOntologyCall.do?searchType=Article&searchFor="+searchName,
+	        url: "WSOntologyCall.do?searchType=Article&searchFor="+searchName.replace(" ", ""),
 	      //  contentType: "application/json; charset=utf-8",
 	        async: false,
 	     	success: function (d) {
+	     		
 	     		 xml=d;
 	     		
 	        },
@@ -183,6 +186,8 @@ function  loadMe() {
 </head>
 <body onload="loadMe()" >
 <br><br>
+
+
 <div class="CSSTableGenerator" align="center">
 <table id="myTable" border="1" align="center" class=" pure-table pure-table-bordered " style="box-shadow: 10px 10px 5px #888888;" width="98%">
 <thead >

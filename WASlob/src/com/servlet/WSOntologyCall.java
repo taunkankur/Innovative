@@ -64,6 +64,7 @@ public class WSOntologyCall extends HttpServlet {
 			}else{
 				
 				String url= rb2.getString(searchType);
+	
 		        out.println(c.getHTML(url+searchFor)); 
 			}
 			

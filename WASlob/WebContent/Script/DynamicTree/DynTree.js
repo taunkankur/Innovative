@@ -24,14 +24,15 @@ $(function() {
 						onActivate : function(node) {
 							
 							
-							
+							showProcessBar();
+							hideDataTable();
 							
 							var iframe = document.getElementById("resultFrame");
 							
 							
 							 
 								selectedWord=node.data.title;
-								
+								selectedWord=capitaliseFirstLetters(selectedWord);
 								togglLable( selectedWord);
 								
 								iframe.contentWindow.ResetSearchvalue(selectedWord);
@@ -39,6 +40,7 @@ $(function() {
 								iframe.contentWindow.reloadPageTreeView();
 								
 								//iframe.contentWindow.LoadDescription();
+								
 								
 								
 							
@@ -49,3 +51,8 @@ $(function() {
 	
 
 });
+
+function capitaliseFirstLetters(string)
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
