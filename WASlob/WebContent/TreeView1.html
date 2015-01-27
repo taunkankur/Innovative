@@ -41,20 +41,20 @@
 		
 		$('#idButtonArticle').click(function(){
 			
-			$("#idIframePopUp").attr(	"src","UtilityJSP/Article.jsp?SearchName="+parent.selectedWord);
+			$("#idIframePopUp").attr(	"src","UtilityJSP/Article.jsp?SearchName="+parent.selectedWord.replace(" ", ""));
 
 		});
 		
 $('#idButtonVideo').click(function(){
 
-			$("#idIframePopUp").attr(	"src","UtilityJSP/YouTubeVideo.jsp?SearchName="+parent.selectedWord);
+			$("#idIframePopUp").attr(	"src","UtilityJSP/YouTubeVideo.jsp?SearchName="+parent.selectedWord.replace(" ", ""));
 		
 		});
 		
 $('#idButtonSlides').click(function(){
 	
  
-	 $("#idIframePopUp").attr(	"src","UtilityJSP/Slides.jsp?SearchName="+parent.selectedWord);
+	 $("#idIframePopUp").attr(	"src","UtilityJSP/Slides.jsp?SearchName="+parent.selectedWord.replace(" ", ""));
 });
 		
  $('#idButtonBooks').click(function(){

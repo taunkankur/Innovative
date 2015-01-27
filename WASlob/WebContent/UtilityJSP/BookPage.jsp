@@ -11,6 +11,8 @@
   list-style-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/treehouse-marker.png);
   
   }
+  
+  a.ex5:hover, a.ex5:active {text-decoration: underline;}
 </style>
 
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css"/>
@@ -73,14 +75,14 @@ pageNumber=pageNumber.split('.')[1].trim();
     		 
     		 if(BookPage[i]!==''){
     		
-        		 $('ul').append('<li><a >'+BookPage [i]+'</a></li>');
+        		 $('ul').append('<li><a class="ex5"  >'+BookPage [i]+'</a></li>');
         	 }
     	 }
     	 
     });
     
      var offset=20;
-     $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.69.157.61:8080/BooKPage/GoodRichPage/'+((pageNumber*1) + (offset*1)) +'.docx&embedded=true');
+     $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.186.154.99:8080/WASlob/GetBookPage?wordToHighlight='+searchName+'_'+((pageNumber*1) + (offset*1)) +'.docx&embedded=true');
      $(document).ready(function() {
  	    
     	 $('a','#idPageList').click(function(){
@@ -89,7 +91,7 @@ pageNumber=pageNumber.split('.')[1].trim();
     		  pageNumber=((pageNumber*1) + (offset*1));
     		  
     		  
-    		  $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.69.157.61:8080/BooKPage/GoodRichPage/'+pageNumber +'.docx&embedded=true');
+    		  $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.186.154.99:8080/WASlob/GetBookPage?wordToHighlight='+searchName+'_'+pageNumber +'.docx&embedded=true');
     		//  alert(currentAnchor.text());
     		  
     		});
@@ -114,9 +116,9 @@ function loadXMLDoc() {
 <table border="0">
 <tr >
 <td width="300px" >
-<div >
-<h3><code>Select Page</code></h3>
-  <ul id="idPageList">
+<div align="center">
+<h3 style="color: grey;font: italic bold 20px/30px Georgia, serif;"><code>Select Page</code></h3>
+  <ul id="idPageList" style="color: grey;font: italic bold 20px/30px Georgia, serif;">
 
 
 </ul>
