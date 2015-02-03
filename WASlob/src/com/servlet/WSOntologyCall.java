@@ -33,6 +33,13 @@ public class WSOntologyCall extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		// TODO Auto-generated method stub
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		GetRequest c = new GetRequest();
 		
 		 PrintWriter out = response.getWriter(  ); 

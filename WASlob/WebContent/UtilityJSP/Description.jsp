@@ -15,6 +15,7 @@
 var searchName;
 function  loadMe() {
 	
+	$('#iDProgressBar').show();
 	(function($) {
 	    $.QueryString = (function(a) {
 	        if (a == "") return {};
@@ -30,6 +31,8 @@ function  loadMe() {
 	})(jQuery);
 	
 	searchName=$.QueryString["SearchName"];
+	
+	
 	if(searchName==="refresh"){
 		
 	}
@@ -40,9 +43,11 @@ function  loadMe() {
 	        type: "GET",
 	        url: "WSOntologyCall.do?searchType=Description&searchFor="+searchName,
 	      //  contentType: "application/json; charset=utf-8",
-	        async: false,
+	        async: true,
 	     	success: function (d) {
+	     		$('#iDProgressBar').hide();
 	     		 xml=d;
+	     		processResponse();
 	     		
 	        },
 	        error: function () {
@@ -53,78 +58,80 @@ function  loadMe() {
 	//var xml= loadXMLDoc();
     
     // alert($(xml).find("title").text());
-     xmlDoc = $.parseXML( xml ),
-     $xml = $( xmlDoc );
+    function processResponse(){
+    	 xmlDoc = $.parseXML( xml ),
+         $xml = $( xmlDoc );
+         
+         var description=$($xml).find('OwlRootNode>Description').text();
+         var nistDescription=$($xml).find('OwlRootNode>NistDef').text();
+         var SuperClass= $($xml).find("OwlRootNode>SuperClass").text().split('|');
+         var SubClass= $($xml).find("OwlRootNode>SubClass").text().split('|');
+         var EquivalentClass= $($xml).find("OwlRootNode>EquivalentClass").text().split('|');
+        
+         if(description!=='' || nistDescription!==''){
+        	 
+        	 if(description!=='')
+        		 $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>GENERAL : </span>'+description+'</td></tr>');
+        	 else
+        		 $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>GENERAL : </span> NO Description</td></tr>');
+        	 
+        	 if(nistDescription!=='')
+        		 $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>NIST : </span> '+nistDescription+'</td></tr>');
+        	 else
+        		 $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>NIST : </span> NO Desctiption</td></tr>');
+         }else{
+        	 $('#idTableDescription > tbody:last').append('<tr><td>NO DESCRIPTION</td></tr>');
+         }
+         
+        
      
-     var description=$($xml).find('OwlRootNode>Description').text();
-     var nistDescription=$($xml).find('OwlRootNode>NistDef').text();
-     var SuperClass= $($xml).find("OwlRootNode>SuperClass").text().split('|');
-     var SubClass= $($xml).find("OwlRootNode>SubClass").text().split('|');
-     var EquivalentClass= $($xml).find("OwlRootNode>EquivalentClass").text().split('|');
-    
-     if(description!=='' || nistDescription!==''){
-    	 
-    	 if(description!=='')
-    		 $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>GENERAL : </span>'+description+'</td></tr>');
-    	 else
-    		 $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>GENRAL : </span> NO Description</td></tr>');
-    	 
-    	 if(nistDescription!=='')
-    		 $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>NIST : </span> '+nistDescription+'</td></tr>');
-    	 else
-    		 $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>NIST : </span> NO Desctiption</td></tr>');
-     }else{
-    	 $('#idTableDescription > tbody:last').append('<tr><td>NO DESCRIPTION</td></tr>');
-     }
-     
-    
- 
-   
-     
-     $.each(SuperClass , function(i, val) { 
-    	 if(i===0 && SuperClass[0]===''){
-    		// $('#idTableSuperClass > tbody:last').append('<tr><td>No Classes Found</td></tr>');
-    		 $("#idSuperClass ul").append('<li style="list-style-type: none;"><span class="tab">No Classes Found</span>	</li>');
-    	 }else{
-    		 
-    		 if(SuperClass[i]!==''){
-    			 $("#idSuperClass ul").append('<li style="list-style-type: none;"><span class="tab">'+SuperClass [i]+'</span></li>');
-        		 //$('#idTableSuperClass > tbody:last').append('<tr><td>'+SuperClass [i]+'</td></tr>');
+       
+         
+         $.each(SuperClass , function(i, val) { 
+        	 if(i===0 && SuperClass[0]===''){
+        		// $('#idTableSuperClass > tbody:last').append('<tr><td>No Classes Found</td></tr>');
+        		 $("#idSuperClass ul").append('<li style="list-style-type: none;"><span class="tab">No Classes Found</span>	</li>');
+        	 }else{
+        		 
+        		 if(SuperClass[i]!==''){
+        			 $("#idSuperClass ul").append('<li style="list-style-type: none;"><span class="tab">'+SuperClass [i]+'</span></li>');
+            		 //$('#idTableSuperClass > tbody:last').append('<tr><td>'+SuperClass [i]+'</td></tr>');
+            	 }
         	 }
-    	 }
-    	 
-    });
+        	 
+        });
 
 
-     
-     $.each(SubClass , function(i, val) { 
-    	 if(i===0 && SubClass[i]===''){
-    		 $("#idSubClass ul").append('<li style="list-style-type: none;"><span class="tab">No Classes Found</span></li>');
-    		// $('#idTableSubClass > tbody:last').append('<tr><td>No Classes Found</td></tr>');
-    	 }else{
-    		 
-    		 if(SubClass[i]!=='' ){
-    			 $("#idSubClass ul").append('<li style="list-style-type: none;"><span class="tab">'+SubClass [i]+'</span></li>');
-        		// $('#idTableSubClass > tbody:last').append('<tr><td>'+SubClass [i]+'</td></tr>');
+         
+         $.each(SubClass , function(i, val) { 
+        	 if(i===0 && SubClass[i]===''){
+        		 $("#idSubClass ul").append('<li style="list-style-type: none;"><span class="tab">No Classes Found</span></li>');
+        		// $('#idTableSubClass > tbody:last').append('<tr><td>No Classes Found</td></tr>');
+        	 }else{
+        		 
+        		 if(SubClass[i]!=='' ){
+        			 $("#idSubClass ul").append('<li style="list-style-type: none;"><span class="tab">'+SubClass [i]+'</span></li>');
+            		// $('#idTableSubClass > tbody:last').append('<tr><td>'+SubClass [i]+'</td></tr>');
+            	 }
         	 }
-    	 }
-    	 
-    });
-     
-     
-     $.each(EquivalentClass , function(i, val) { 
-    	 if(i===0 && EquivalentClass[i]===''){
-    		 $("#idEquClass ul").append('<li style="list-style-type: none;"><span class="tab">No Classes Found</span></li>');
-    		// $('#idTableEquivalentClass > tbody:last').append('<tr><td>No Classes Found</td></tr>');
-    	 }else{
-    		 
-    		 if(EquivalentClass[i]!==''){
-    			 $("#idEquClass ul").append('<li style="list-style-type: none;"><span class="tab">'+EquivalentClass [i]+'</span></li>');
-        		// $('#idTableEquivalentClass > tbody:last').append('<tr class="pure-table-odd"><td>'+EquivalentClass [i]+'</td></tr>');
+        	 
+        });
+         
+         
+         $.each(EquivalentClass , function(i, val) { 
+        	 if(i===0 && EquivalentClass[i]===''){
+        		 $("#idEquClass ul").append('<li style="list-style-type: none;"><span class="tab">No Classes Found</span></li>');
+        		// $('#idTableEquivalentClass > tbody:last').append('<tr><td>No Classes Found</td></tr>');
+        	 }else{
+        		 
+        		 if(EquivalentClass[i]!==''){
+        			 $("#idEquClass ul").append('<li style="list-style-type: none;"><span class="tab">'+EquivalentClass [i]+'</span></li>');
+            		// $('#idTableEquivalentClass > tbody:last').append('<tr class="pure-table-odd"><td>'+EquivalentClass [i]+'</td></tr>');
+            	 }
         	 }
-    	 }
-    	 
-    });
+        	 
+        });
+    }
      
 }
 
@@ -207,7 +214,9 @@ function loadXMLDoc() {
 
 
 
-
+<div id="iDProgressBar" align="center" >
+		<img alt="" src="../Image/loader_wide.gif" width="1000px" height="500px">
+	</div>
 
 
 

@@ -76,7 +76,7 @@ a:hover {text-decoration:underline;background-color: rgb(218, 222, 224);}
 
 var searchName;
 function  loadMe() {
-	
+	$('#iDProgressBar').show();
 	(function($) {
 	    $.QueryString = (function(a) {
 	        if (a == "") return {};
@@ -98,9 +98,25 @@ function  loadMe() {
 	        type: "GET",
 	        url: "WSOntologyCall.do?searchType=Slides&searchFor="+searchName,
 	      //  contentType: "application/json; charset=utf-8",
-	        async: false,
+	        async: true,
 	     	success: function (d) {
+	     		$('#iDProgressBar').hide();
 	     		 xml=d;
+	     		  xmlDoc = $.parseXML( xml ),
+	     	     $xml = $( xmlDoc );
+	     	     console.log($xml);
+	     	     
+	     	     $($xml).find("Slideshows>Slideshow").each(function(){
+	     	    	 var url=$(this).find('Slideshows>Slideshow>URL').text();
+	     			    var VedTitle=$(this).find('Slideshows>Slideshow>Title').text();
+	     			      var VedThumbNail=$(this).find('Slideshows>Slideshow>ThumbnailSmallURL').text();
+	     			       var VedDesc=$(this).find('Slideshows>Slideshow>Description').text();
+	     			       var PublishedDateTime=$(this).find('Slideshows>Slideshow>Created').text();
+	     			       var UpdatedDateTime=$(this).find('Slideshows>Slideshow>Updated').text();
+	     			        $('#table_id > tbody:last').append('<tr> <td  ><a href="" data-lightbox="image-1" data-title="My caption"></a><img alt="" src="'+VedThumbNail+'"></td><td><a href="'+url+'"  target="blank">'+VedTitle+'</a></td><td>'+VedDesc+'</td><td>'+PublishedDateTime+'</td><td>'+UpdatedDateTime+'</td></tr>');
+
+	     			     
+	     			      });
 	     		
 	        },
 	        error: function () {
@@ -109,21 +125,7 @@ function  loadMe() {
 	    });
     
     // alert($(xml).find("title").text());
-     xmlDoc = $.parseXML( xml ),
-     $xml = $( xmlDoc );
-     console.log($xml);
-     
-     $($xml).find("Slideshows>Slideshow").each(function(){
-    	 var url=$(this).find('Slideshows>Slideshow>URL').text();
-		    var VedTitle=$(this).find('Slideshows>Slideshow>Title').text();
-		      var VedThumbNail=$(this).find('Slideshows>Slideshow>ThumbnailSmallURL').text();
-		       var VedDesc=$(this).find('Slideshows>Slideshow>Description').text();
-		       var PublishedDateTime=$(this).find('Slideshows>Slideshow>Created').text();
-		       var UpdatedDateTime=$(this).find('Slideshows>Slideshow>Updated').text();
-		        $('#table_id > tbody:last').append('<tr> <td  ><a href="" data-lightbox="image-1" data-title="My caption"></a><img alt="" src="'+VedThumbNail+'"></td><td><a href="'+url+'"  target="blank">'+VedTitle+'</a></td><td>'+VedDesc+'</td><td>'+PublishedDateTime+'</td><td>'+UpdatedDateTime+'</td></tr>');
-
-		     
-		      });
+   
    //  $('#table_id').DataTable();
     
 
@@ -219,6 +221,8 @@ function loadXMLDoc() {
 </table>
 </div>
 
-
+<div id="iDProgressBar" align="center" style="padding-top: 10%">
+		<img alt="" src="../Image/loader_wide.gif" width="1000px" height="500px">
+	</div>
 </body>
 </html>

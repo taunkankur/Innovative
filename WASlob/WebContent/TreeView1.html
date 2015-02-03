@@ -170,8 +170,8 @@ if(i<5){
 			   	 if(i<5){
 		    			var count=i;
 		    			count=count+1;
-
-			  	       $("#idSlidesList ul").append('<li style="list-style-type: none;"><a target="_blank" style="color: #000000; text-decoration: none;" href='+$(this).find("URL").text()+'><span class="tab truncate"><b>'+count+'. </b> '+$(this).find("Title").text()+'</span></a>	</li>');
+		    			
+			  	       $("#idSlidesList ul").append('<li style="list-style-type: none;"><a target="_blank" style="color: #000000; text-decoration: none;" href='+$(this).find("URL").text()+'><span class="tab truncate"><img alt="" width="25px"  height="25px" src="'+$(this).find("ThumbnailSmallURL").text()+'"> '+$(this).find("Title").text()+'</span></a>	</li>');
 			  }else{
 			  	
 			  } 
@@ -202,18 +202,18 @@ if(i<5){
 		    });
 	    
 		 
-	  
+		
 	     xmlDoc = $.parseXML( xml ),
 	     $xml = $( xmlDoc );
-	     
+	    
 	     $($xml).find("Results>Row").each(function(i){
-	     
+	    	
 	       
 	    		 if(i<5){
 		    			var count=i;
 		    			count=count+1;
-
-			  	       $("#idVideoList ul").append('<li style="list-style-type: none;"><a target="_blank" style="color: #000000; text-decoration: none;" href=https://www.youtube.com/watch?v='+$(this).find("VedURL").text()+'><span class="tab truncate"><b>'+count+'. </b> '+$(this).find("VedTitle").text()+'</span></a>	</li>');
+		    			 
+			  	       $("#idVideoList ul").append('<li style="list-style-type: none;"><a target="_blank" style="color: #000000; text-decoration: none;" href=https://www.youtube.com/watch?v='+$(this).find("VedURL").text()+'><span class="tab truncate"><img alt="" width="25px"  height="25px" src="'+$(this).find("VedThumbNail").text()+'"> '+$(this).find("VedTitle").text()+'</span></a>	</li>');
 			  }else{
 			  	
 			  } 
@@ -463,3 +463,5 @@ display:none;
 					
 </body>
 </html>
+
+

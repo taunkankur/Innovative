@@ -82,7 +82,7 @@ pageNumber=pageNumber.split('.')[1].trim();
     });
     
      var offset=20;
-     $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.186.154.99:8080/WASlob/GetBookPage?wordToHighlight='+searchName+'_'+((pageNumber*1) + (offset*1)) +'.docx&embedded=true');
+     $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.69.157.61:8080/WASlob/GetBookPage?wordToHighlight='+searchName+'_'+((pageNumber*1) + (offset*1)) +'.docx&embedded=true');
      $(document).ready(function() {
  	    
     	 $('a','#idPageList').click(function(){
@@ -91,7 +91,7 @@ pageNumber=pageNumber.split('.')[1].trim();
     		  pageNumber=((pageNumber*1) + (offset*1));
     		  
     		  
-    		  $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.186.154.99:8080/WASlob/GetBookPage?wordToHighlight='+searchName+'_'+pageNumber +'.docx&embedded=true');
+    		  $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.69.157.61:8080/WASlob/GetBookPage?wordToHighlight='+searchName+'_'+pageNumber +'.docx&embedded=true');
     		//  alert(currentAnchor.text());
     		  
     		});
@@ -116,9 +116,9 @@ function loadXMLDoc() {
 <table border="0">
 <tr >
 <td width="300px" >
-<div align="center">
+<div >
 <h3 style="color: grey;font: italic bold 20px/30px Georgia, serif;"><code>Select Page</code></h3>
-  <ul id="idPageList" style="color: grey;font: italic bold 20px/30px Georgia, serif;">
+  <ul id="idPageList" style="color: grey;font: italic bold 15px/25px Georgia, serif;">
 
 
 </ul>

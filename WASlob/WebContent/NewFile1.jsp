@@ -202,9 +202,9 @@ function showDataTable(){
 				</td>
 				<td>
 				<div id="idProcessingBar">
+				
 				<h4 style="color: grey;font: italic bold 20px/30px Georgia, serif;" id="idNoSaveVideo" align="center"> Form loading. Please wait...</h4>
-						
-						</div>
+				</div>
 						<div id="idDataTable" style="height: 99%" >
 						<iframe  style="border: none;height: 99%" align="middle" id="resultFrame" src="TreeView1.html" width="100%" ></iframe></div> </td>
 				
