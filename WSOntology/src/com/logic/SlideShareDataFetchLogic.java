@@ -22,12 +22,10 @@ public class SlideShareDataFetchLogic {
 		String api_key = "4w4sRJ4G";
 		String secret_key = "lMZ68S5P";
 		long ts = System.currentTimeMillis() / 1000L;
-		System.out.println("ts \n" + ts);
-		System.out.println("secret_key" + secret_key);
-		System.out.println("In main hash=" + hash);
+	
 		// PropertyConfigurator.configure("C:\\Users\\Ankur\\git\\Innovative\\WSOntology\\WebContent\\WEB-INF\\log4j.properties");
 		  
-		log.info("frewr");
+		log.info(new SlideShareDataFetchLogic().getXML("Birthday+Attack"));
 		
 	//System.out.println(new SlideShareDataFetchLogic().getXML("Attack"));
 	}

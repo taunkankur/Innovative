@@ -109,7 +109,7 @@ public class RestApiMethod {
 	public String getSlideShareData(@PathParam("queryString") String queryString) {
 		
 		SlideShareDataFetchLogic slFetchLogic = new SlideShareDataFetchLogic();
-		queryString = getSearchTerm(queryString).toString().replace("+", "");
+		queryString = getSearchTerm(queryString).toString();
 		log.info(queryString);
 		
 		String returnValue=slFetchLogic.getXML(queryString);
@@ -133,7 +133,7 @@ public class RestApiMethod {
 			} else 
 				concatWord = new StringBuffer(w);
 		}
-
+		log.info("Returned Word : "+ concatWord);
 		return concatWord;
 
 	}

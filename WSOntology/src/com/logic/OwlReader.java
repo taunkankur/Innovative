@@ -33,8 +33,31 @@ public class OwlReader {
 
 	public static void main(String[] args) throws Exception {
 		//System.out.println(new OwlReader().getOwlData("Birthday Attack"));
-		System.out.println(new OwlReader().getBookPage("Password"));
+//		System.out.println(new OwlReader().getBookPage("Password"));
+		
+//		new OwlReader().getOwlAllClasses();
 	}
+	
+	
+	
+//	public void getOwlAllClasses(){
+//		String fileName="SecOntV2.owl";
+//		StringBuffer sBuffer = new StringBuffer();
+//		try {
+//			
+//			System.out.println();
+////			InputStream in = FileManager.get().open(inputFileName);
+//			JenaOWLModel owlModel = ProtegeOWL
+//					.createJenaOWLModelFromInputStream(getClass().getResourceAsStream(fileName));
+//			
+////			owlModel.getOWLLogicalClassClass().getOverriddenTemplateFacets(arg0);
+//			owlModel.flushCache();
+//			owlModel.close();
+//
+//		} catch (Exception ae) {
+//			ae.printStackTrace();
+//		}
+//	}
 
 	public String getOwlData(String queryString) {
 		String fileName="SecOntV2.owl";

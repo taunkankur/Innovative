@@ -204,7 +204,7 @@ public class YoutubeVideoLogic {
             StringWriter writer = new StringWriter();
             TransformerFactory tFactory = TransformerFactory.newInstance();
             Transformer transformer = tFactory.newTransformer(
-                    new javax.xml.transform.stream.StreamSource("C:\\Users\\Ankur\\git\\Innovative\\WSOntology\\src\\howto.xslt"));
+                    new javax.xml.transform.stream.StreamSource("C:\\ProjectConfigs\\XSLT\\youTubeParsing.xslt"));
 
             transformer.transform(
                     new javax.xml.transform.stream.StreamSource(reader), 
