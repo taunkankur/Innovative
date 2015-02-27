@@ -22,6 +22,8 @@
 var pageNumber;
 var searchName;
 function  loadMe() {
+	$('#iDProgressBar').show();
+	$('#idPageView').hide();
 	
 	
 	(function($) {
@@ -54,6 +56,8 @@ pageNumber=pageNumber.split('.')[1].trim();
 	
 	        async: false,
 	     	success: function (d) {
+	     		$('#idPageView').show();
+	     		$('#iDProgressBar').hide();
 	     		 xml=d;
 	     		
 	        },
@@ -81,8 +85,9 @@ pageNumber=pageNumber.split('.')[1].trim();
     	 
     });
     
+     
      var offset=20;
-     $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.69.157.61:8080/WASlob/GetBookPage?wordToHighlight='+searchName+'_'+((pageNumber*1) + (offset*1)) +'.docx&embedded=true');
+     $('#idPageView').attr('src','http://localhost:8080/PDFHighlight/NewFile.jsp?PageNumber='+pageNumber+'&WordToHighLight='+searchName);
      $(document).ready(function() {
  	    
     	 $('a','#idPageList').click(function(){
@@ -91,7 +96,7 @@ pageNumber=pageNumber.split('.')[1].trim();
     		  pageNumber=((pageNumber*1) + (offset*1));
     		  
     		  
-    		  $('#idPageView').attr('src','http://docs.google.com/gview?url=http://54.69.157.61:8080/WASlob/GetBookPage?wordToHighlight='+searchName+'_'+pageNumber +'.docx&embedded=true');
+    		  $('#idPageView').attr('src','http://localhost:8080/PDFHighlight/NewFile.jsp?PageNumber='+pageNumber+'&WordToHighLight='+searchName);
     		//  alert(currentAnchor.text());
     		  
     		});
@@ -110,12 +115,19 @@ function loadXMLDoc() {
     return xmlHttp.responseText;
 }
 </script>
+<style type="text/css">
+html,body,iframe {
+	height: 99%;
+	width: 100%;
+}
+</style>
 </head>
+
 <body onload='loadMe()'>
 
-<table border="0">
+<table border="0" width="100%" height="100%">
 <tr >
-<td width="300px" >
+<td width="10%" align="left">
 <div >
 <h3 style="color: grey;font: italic bold 20px/30px Georgia, serif;"><code>Select Page</code></h3>
   <ul id="idPageList" style="color: grey;font: italic bold 15px/25px Georgia, serif;">
@@ -125,12 +137,14 @@ function loadXMLDoc() {
 </div>
 </td>
 <td>
-<div align="center">
-<iframe src="" style="width:900px; height:800px;" frameborder="0" id='idPageView'></iframe>
+<div align="left" >
+<iframe src="" style="width:100%; height:800px; " frameborder="0" id='idPageView' scrolling="no"></iframe>
 </div>
 </td>
 </tr>
 </table>
-
+<div id="iDProgressBar" align="center" style="padding-top: ">
+		<img alt="" src="../Image/loader_wide.gif" width="50%" height="50%">
+	</div>
 </body>
 </html>

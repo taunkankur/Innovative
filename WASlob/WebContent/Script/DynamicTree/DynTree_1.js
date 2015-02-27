@@ -34,8 +34,11 @@ $(function() {
 //							 
 								
 								selectedWord=capitaliseFirstLetters(node.data.title);
+								
 //								togglLable( selectedWord);
 								searchTermFromText=selectedWord;
+								
+								
 								loadDescriptionData(selectedWord);
 								loadArticleData(selectedWord);
 								loadVideoData(selectedWord);
