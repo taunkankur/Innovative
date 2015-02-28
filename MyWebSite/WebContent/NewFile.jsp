@@ -42,18 +42,22 @@ function loadImage(){
 	
 }
 
-
+var status;
 function callAjax(){
 	
 	$.ajax({
     type: "GET",
-    url: "/do",
+    url: "./do",
     async: false,
  	success: function (d) {
- 	
+ 		status='true';
     },
     error: function () {
-          }
+    	status='failure';
+          },
+          complete: function(e, xhr, settings){
+        	   
+        	}
 });
 
 };
@@ -135,7 +139,7 @@ html, body    {
     </a>  
     <br>
     <a href="https://github.com/taunkankur" target="_blank" style="text-decoration: none">
-        <img src="Image/Git.jpg" style="border: 0; float: none; "  width="50px" height="50px"  /> 
+        <img src="Image/Git.jpg" style="border: 0; float: none; "  width="70px" height="60px"  /> 
         <span>Repository</span>
     </a> 
 </div>
