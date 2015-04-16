@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>iSecure Info..</title>
+<link rel="stylesheet" href="Style/styles.css">
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css"/>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script type="text/javascript">
+
+  
+  
+  function onLoad(){
+		document.getElementById("showData").style.visibility = "hidden";
+		var retVal =   prompt("Enter Password :", "");
+		if(retVal=='ankur'){
+			document.getElementById("showData").style.visibility = "visible";
+		  }
+	}
+  </script>
+</head>
+<body onload="onLoad()">
+
+<div align="center"> <h1>Welcome</h1></div>
+<hr width="100%">
+
+<br><br>
+
+
+
+<div id="showData" align="center">
+
+<table>
+<thead><h3>iSecure Lab</h3></thead>
+<tbody>
+<tr><td><a href="http://54.186.30.142/iSecure/" target="blank">Click To Redirect</a></td></tr>
+</tbody>
+</table>
+
+<table>
+<thead><h3>Amazon Server</h3></thead>
+<tbody>
+<tr><td><a href="http://54.69.157.61:8080/WASlob/" target="blank">SLOB-Security(Prod Version)</a></td></tr>
+<tr><td><a href="http://54.69.157.61:8080/WASlobTest/Test.jsp" target="blank">SLOB-Security(Test Version)</a></td></tr>
+<tr><td><a href="http://54.69.157.61:8080/WASlobFraud/" target="blank">SLOB-Fraud(Test Version)</a></td></tr>
+<tr><td><a href="http://54.69.157.61:8080/SoxClient/index.html" target="blank">SOX</a></td></tr>
+<tr><td><a >SOB - Not Deployed</a></td></tr>
+<tr><td><a href="http://54.69.157.61/phpmyadmin/" target="blank">PHPMyadmin</a></td></tr>
+<tr><td><a href="http://54.69.157.61:8080/manager/html" target="blank">Tomcat Manager</a></td></tr>
+</tbody>
+</table>
+
+<table>
+<thead><h3>CUNY Server</h3></thead>
+<tbody>
+<tr><td><a href="http://cis.csi.cuny.edu:8080/SLOB/" target="blank">SLOB</a></td></tr>
+<tr><td><a href="http://cis.csi.cuny.edu/~project/SKATClient/" target="blank">SOX</a></td></tr>
+<tr><td><a href="http://cis.csi.cuny.edu:8080/Security_OntologyV5/" target="blank">SOB</a></td></tr>
+<tr><td><a href="http://cis.csi.cuny.edu/phpmyadmin/" target="blank">PHPMyadmin</a></td></tr>
+</tbody>
+</table>
+
+<table>
+<thead><h3>OWL Editor</h3></thead>
+<tbody>
+<tr><td><a href="http://webprotege.stanford.edu/" target="blank">Web Protege</a></td></tr>
+</tbody>
+</table>
+
+<table>
+<thead><h3>Project Status</h3></thead>
+<tbody>
+<tr><td><a href="https://docs.google.com/spreadsheets/d/1k4wyqw3PDqnoCwWMFXaDjALNwxZYX3NWzCga-fGq4n0/edit#gid=1746201382" target="blank">Google Spread Sheet</a></td></tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
