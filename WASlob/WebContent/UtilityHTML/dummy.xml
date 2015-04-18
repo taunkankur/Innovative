@@ -1,0 +1,92 @@
+<results>
+	<most_viewed>
+		<result>
+			<source>ARTICLE</source>
+			<img></img>
+			<title>Most Viewed Article</title>
+			<desc>Authors or blurb</desc>
+			<link>#</link>
+		</result>
+		<result>
+			<source>VIDEO</source>
+			<img></img>
+			<title>Most Viewed Video</title>
+			<desc>Blurb</desc>
+			<link>#</link>
+		</result>
+		<result>
+			<source>SLIDE</source>
+			<img></img>
+			<title>Most Viewed Slide</title>
+			<desc>Blurb</desc>
+			<link>#</link>
+		</result>
+		<result>
+			<source>BOOK</source>
+			<img></img>
+			<title>Most Viewed Book</title>
+			<desc>Author or blurb</desc>
+			<link>#</link>
+		</result>
+	</most_viewed>
+	<most_relevant>
+		<result>
+			<source>ARTICLE</source>
+			<img></img>
+			<title>Most Relevant Article</title>
+			<desc></desc>
+			<link>#</link>
+		</result>
+		<result>
+			<source>VIDEO</source>
+			<img></img>
+			<title>Most Relevant Video</title>
+			<desc></desc>
+			<link>#</link>
+		</result>
+		<result>
+			<source>SLIDE</source>
+			<img></img>
+			<title>Most relevant Slide</title>
+			<desc></desc>
+			<link>#</link>
+		</result>
+		<result>
+			<source>BOOK</source>
+			<img></img>
+			<title>Most Relevant Book</title>
+			<desc></desc>
+			<link>#</link>
+		</result>
+	</most_relevant>
+	<highest_rated>
+		<result>
+			<source>ARTICLE</source>
+			<img></img>
+			<title>Highest rated Article</title>
+			<desc></desc>
+			<link>#</link>
+		</result>
+		<result>
+			<source>VIDEO</source>
+			<img></img>
+			<title>Highest rated video</title>
+			<desc></desc>
+			<link>#</link>
+		</result>
+		<result>
+			<source>SLIDE</source>
+			<img></img>
+			<title>Highest rated slide</title>
+			<desc></desc>
+			<link>#</link>
+		</result>
+		<result>
+			<source>BOOK</source>
+			<img></img>
+			<title>Highest rated book</title>
+			<desc></desc>
+			<link>#</link>
+		</result>
+	</highest_rated>
+</results>

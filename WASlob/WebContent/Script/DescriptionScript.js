@@ -20,45 +20,63 @@ function PopulateTable(){
 	    })(window.location.search.substr(1).split('&'))
 	})(jQuery);
 	
-	var Data=$.QueryString["Data"];
+	var Data=parent.landingPageData;
 	var SearchName=$.QueryString["SearchName"];
 	
 	$('#idSpanDesGenral').html(SearchName);
 	$('#idSpanDesNIST').html(SearchName);
-	
+	$('#idSpanDesSANS').html(SearchName);
+	//alert(Data);
+	if (Data==false) {
+		alert("No OWL record for this file.");
+		return;
+	}
 	xmlDoc = $.parseXML( Data ),
     $xml = $( xmlDoc );
-    
+    var sansDescription=$($xml).find('OwlRootNode>SANSDescription').text();
     var description=$($xml).find('OwlRootNode>Description').text();
     var nistDescription=$($xml).find('OwlRootNode>NistDef').text();
     var SuperClass= $($xml).find("OwlRootNode>SuperClass").text().split('|');
     var SubClass= $($xml).find("OwlRootNode>SubClass").text().split('|');
     var EquivalentClass= $($xml).find("OwlRootNode>EquivalentClass").text().split('|');
    
-    if(description!=='' || nistDescription!==''){
+    if(description!=='' || nistDescription!=='' || sansDescription!==''){
    	 
    	 if(description!==''){
    		 
-   	 $('#idGeneralDesc').html(description);
-   		// $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>GENERAL : </span>'+description+'</td></tr>');
+   	 $('#idGeneralDesc').html("<span class='desc_src'>GENERAL:</span>"+description);
+   		
     }
    	 else{
-   		 $('#idGeneralDesc').html('No Description..');
-   		//$('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>GENERAL : </span> NO Description</td></tr>');
+   		//$('#idGeneralDesc').html('No Description..');
+   		$("#idGeneralDescFancyElem").hide();
    	 }
    		 
    	 
    	 if(nistDescription!==''){
-   		 $('#idNistDesc').html(nistDescription);
+   		 $('#idNistDesc').html("<span class='desc_src'>NIST:</span>"+nistDescription);
    		
-   	//	 $('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>NIST : </span> '+nistDescription+'</td></tr>');
+   	
    	 }else{
-   		 $('#idNistDesc').html(' No Desctiption..');
-   		//$('#idTableDescription > tbody:last').append('<tr><td><span style=\'color: grey;font: italic bold 20px/30px Georgia, serif;\'>NIST : </span> NO Desctiption</td></tr>');
+   		 //$('#idNistDesc').html(' No Desctiption..');
+   		$("#idNistDescFancyElem").hide();
    	 }
+   	 
+   	if(sansDescription!==''){
+  		 $('#idSANSDesc').html("<span class='desc_src'>SANS:</span>"+sansDescription);
+  		
+  	
+  	 }else{
+  		 //$('#idSANSDesc').html(' No Desctiption..');
+  		$("#idSANSDescFancyElem").hide();
+  	 }
+   	 
    		 
     }else{
-   	 $('#idTableDescription > tbody:last').append('<tr><td>NO DESCRIPTION</td></tr>');
+   	 //$('#idTableDescription > tbody:last').append('<tr><td>NO DESCRIPTION</td></tr>');
+    	$("#idGeneralDescFancyElem").hide();
+    	$("#idNistDescFancyElem").hide();
+    	$("#idSANSDescFancyElem").hide();
     }
     
    
@@ -109,5 +127,67 @@ function PopulateTable(){
    	 }
    	 
    });
+    loadInitialData();
 	});
+}
+
+function loadInitialData() {
+	$.ajax({
+		url: "dummy.xml"
+	}).done(function( data ) {
+		$xml = $(data);
+		$("#tab1contents").empty();
+		$most_viewed = $xml.find("most_viewed");
+		$most_viewed.find("result").each(function(){
+			$result = $(this)
+			source	= $result.find("source").text();
+			img		= $result.find("img").text();
+			title	= $result.find("title").text();
+			desc	= $result.find("desc").text();
+			link	= $result.find("link").text();
+			$("#tab1contents").append(createLinkTile(source, img, title, desc, link));
+		});
+		$("#tab2contents").empty();
+		$most_relevant = $xml.find("most_relevant");
+		$most_relevant.find("result").each(function(){
+			$result = $(this)
+			source	= $result.find("source").text();
+			img		= $result.find("img").text();
+			title	= $result.find("title").text();
+			desc	= $result.find("desc").text();
+			link	= $result.find("link").text();
+			$("#tab2contents").append(createLinkTile(source, img, title, desc, link));
+		});
+		$("#tab3contents").empty();
+		$highest_rated = $xml.find("highest_rated");
+		$highest_rated.find("result").each(function(){
+			$result = $(this)
+			source	= $result.find("source").text();
+			img		= $result.find("img").text();
+			title	= $result.find("title").text();
+			desc	= $result.find("desc").text();
+			link	= $result.find("link").text();
+			$("#tab3contents").append(createLinkTile(source, img, title, desc, link));
+		});
+		
+	});
+}
+
+function createLinkTile(source, img, title, desc, link) {
+	imgtxt = "";
+	if (img != "") imgtxt = "<img src='" + img + "'/>";
+	html = 
+		"<div class='resTile' "+
+		"onclick='window.open(\"" + link + "\")'>"+
+		"<table width='100%'>"+
+		"<tr>"+
+		"<td rowspan='2' width='40px'>" + imgtxt + "</td>"+
+		"<td class='resTileTitle'>"+ title + "</td>"+
+		"</tr>"+
+		"<tr>"+
+		"<td class='resTileDesc'>"+ desc + "</td>"+
+		"</tr>"+
+		"</table>"+
+		"</div>";
+	return html;
 }

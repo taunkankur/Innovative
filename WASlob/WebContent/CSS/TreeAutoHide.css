@@ -1,0 +1,33 @@
+#dock {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	position: fixed;
+	top: 15%;
+	height: 40px;
+	z-index: 9999;
+	left: 0px;
+}
+
+#dock>div {
+	width: 40px; 
+	height: 100px;
+	margin: 0 0 1px 0;
+	background: url(../Image/SearchArrow.png);
+	
+	}
+
+/* panels */
+#dock>div div {
+	position: absolute;
+	top: 100%;
+	left: -40px;
+	z-index: -1;
+	width: 0px;
+	display: block;
+	background-color: #F1F1F1;
+	border: solid 1px #969696;
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+}

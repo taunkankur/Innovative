@@ -56,101 +56,149 @@ display: table;
 	color: #000000;
 	line-height: 1em;
 }
+.descdiv {
+	color: grey; 
+	font-style: italic;
+	width:100%;
+	border: 1px solid rgba(198, 198, 198, 0.19);
+}
+.desc_src {
+	font-size: xx-small;
+	background-color: black;
+	color:white;
+	vertical-align: top;
+}
+.titleCell {
+	background-color: rgba(198, 198, 198, 0.39);
+}
+.imageCell {
+	background-color: rgba(198, 198, 198, 0.99);
+	border: 2px solid black;
+	color: white;
+	text-align: center;
+	font-size: xx-large;
+}
+.resTile {
+	border: 1px solid rgba(198, 198, 198, 0.19);
+	cursor:pointer;
+}
+.resTile:HOVER {
+	background-color: rgba(198, 198, 198, 0.19);
+}
+.resTileTitle {
+	font-weight: bold;
+}
+.resTileDesc {
+	font-style: italic;
+	font-size: small;
+}
+.infoDivHeader {
+	background-color: rgba(198, 198, 198, 0.39);
+	vertical-align: top;
+	border: 1px solid rgba(198, 198, 198, 0.99);
+}
+.infoDivContent {
+	border: 1px solid rgba(198, 198, 198, 0.19);
+	vertical-align: top;
+}
 </style>
 </head>
 <body onload="PopulateTable()">
 
-
-
-<div class="fancy elem" >
-<span class="label"><div style="width: 100%; height: 20%">
-								
-								<b style="font-style: italic"><span
-									style='color: grey; font: italic bold 20px/10px Georgia, serif;'>&nbsp; General...&nbsp;</span><span id="idSpanDesGenral"></span></b>
-							</div></span>
-<br><br>
-<div id="idGeneralDesc" style='color: grey; font-style: italic;' align="center"></div>
-<br><br>
-<span class="endlabel"><div align="right">
-								<a id="idButtonVideo" 
-									style='color: grey; font: italic bold 20px/10px Georgia, serif;'>Description</a>
-							</div></span></div>
-							
-							
-							<br>
-							
-							<div class="fancy elem" >
-<span class="label"><div style="width: 100%; height: 30%">
-								
-								<b style="font-style: italic"><span
-									style='color: grey; font: italic bold 20px/10px Georgia, serif;'>&nbsp; NIST...&nbsp;</span><span id="idSpanDesNIST"></span></b>
-							</div></span>
-<br><br>
-<div id="idNistDesc" style='color: grey; font-style: italic;' align="center"></div>
-<br><br>
-<span class="endlabel"><div align="right">
-								<a id="idButtonVideo" 
-									style='color: grey; font: italic bold 20px/10px Georgia, serif;'>Description</a>
-							</div></span></div>
-							
-							<br>
-							
-							<br>
-							
+<table width="100%">
+	<tr>
+		<td width="60%" class="titleCell">Description: <b><span id="idSpanDesGenral"></span></b></td>
+		<td width="40%" rowspan="5" class="imageCell">Image appears here</td>
+	</tr>
+	<tr>
+		<td>
+			<div id="idGeneralDesc" class="descdiv"></div>
+			<div id="idNistDesc" class="descdiv"></div>
+			<div id="idSANSDesc" class="descdiv"></div>
+		</td>
+	</tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr>
+		<td>
+			<table width="100%">
+				<tr>
+					<td width="30%">
+						<div class="infoDivHeader">SuperClass</div>
+						<div class="infoDivContent">
+							<div id="idSuperClass" style="width:100%; height:100px; overflow:auto">
+								<ul id="content" style='color: grey; font-style: italic;'>
+									<li style="list-style-type: none;"></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td width="40%">
+						<div class="infoDivHeader">DirectSubClass</div>
+						<div class="infoDivContent">
+							<div id="idSubClass" style="width:100%; height:100px; overflow:auto">
+								<ul id="content" style='color: grey; font-style: italic;'>
+									<li style="list-style-type: none;" ></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td width="30%">
+						<div class="infoDivHeader">EquivalentClass</div>
+						<div class="infoDivContent">
+							<div id="idEquClass" style="width:100%; height:100px; overflow:auto">
+								<ul id="content" style='color: grey; font-style: italic;'>
+									<li style="list-style-type: none;"></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<p>&nbsp;</p>
 							<table border="0" style="width: 100%">
 							<tr>
-							<td valign="top" width="33%"><div class="fancy1 elem" >
-<span class="label"><div style="width: 100%; height: 30%">
-								
-								<b style="font-style: italic"><span
-									style='color: grey; font: italic bold 20px/10px Georgia, serif;'>&nbsp; SuperClass..&nbsp;</span></b>
-							</div></span>
-<br><br>
-<div id="idSuperClass" style="width:100%; max-height:500px; overflow:auto">
-<ul id="content" style='color: grey; font-style: italic;'>
-<li style="list-style-type: none;"></li>
-</ul>
-</div>
-</div></td>
-							<td valign="top" width="33%"><div class="fancy1 elem" >
-<span class="label"><div style="width: 100%; height: 30%">
-								
-								<b style="font-style: italic"><span
-									style='color: grey; font: italic bold 20px/10px Georgia, serif;'>&nbsp; DirectSubClass..&nbsp;</span></b>
-							</div></span>
-<br><br>
-<div id="idSubClass" style="width:100%; max-height:500px; overflow:auto">
-<ul id="content" style='color: grey; font-style: italic;'>
-<li style="list-style-type: none;" ></li>
-</ul>
-</div>
-</div></td>
-							<td valign="top" width="33%"><div class="fancy1 elem" >
-<span class="label"><div style="width: 100%; height: 30%">
-								
-								<b style="font-style: italic"><span
-									style='color: grey; font: italic bold 20px/10px Georgia, serif;'>&nbsp; EquivalentClass..&nbsp;</span></b>
-							</div></span>
-<br><br>
-<div id="idEquClass" style="width:100%; max-height:500px; overflow:auto">
-<ul id="content" style='color: grey; font-style: italic;'>
-<li style="list-style-type: none;"></li>
-</ul>
-</div>
-</div></td>
+								<td colspan='3'>
+	<table width="100%">
+		<tr>
+			<td>
+				<div class="infoDivHeader">Most viewed</div>
+				
+			</td>
+			<td>
+				<div class="infoDivHeader">Most relevant</div>
+				
+			</td>
+			<td>
+				<div class="infoDivHeader">Highest rated</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="tab1contents" class="infoDivContent">
+					LOADING...
+				</div>
+			</td>
+			<td>
+				<div id="tab2contents" class="infoDivContent">
+					LOADING...
+				</div>
+			</td>
+			<td>
+				<div id="tab3contents" class="infoDivContent">
+					LOADING...
+				</div>
+			</td>
+			
+		</tr>
+	</table>
+
+								</td>
 							</tr>
-							
 							</table>
-							
-							
-
-
-							
-							
-
-
-
-							
-							
+					
 </body>
 </html>

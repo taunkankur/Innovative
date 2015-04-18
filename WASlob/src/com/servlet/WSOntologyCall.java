@@ -46,6 +46,7 @@ public class WSOntologyCall extends HttpServlet {
  	    response.setContentType("text/html"); 
 		String searchType=request.getParameter("searchType");
 		String searchFor=request.getParameter("searchFor");
+	
 		String VedURL=request.getParameter("VedURL");
 		String StudentId=request.getParameter("StudentId");
 		

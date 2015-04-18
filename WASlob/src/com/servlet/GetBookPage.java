@@ -15,13 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import sun.text.normalizer.ReplaceableString;
+//import sun.text.normalizer.ReplaceableString;
 import asposewobfuscated.s;
 
 import com.aspose.words.Document;
 import com.aspose.words.SaveFormat;
 import com.aspose.words.SaveOutputParameters;
-import com.sun.org.apache.bcel.internal.generic.DADD;
+//import com.sun.org.apache.bcel.internal.generic.DADD;
 
 /**
  * Servlet implementation class GetBookPage

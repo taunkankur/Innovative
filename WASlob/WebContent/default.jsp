@@ -12,6 +12,7 @@
 <!-- Scripts for this File -->
 <script src="./Script/jquery/jquery-2.1.3.min.js" type="text/javascript"></script>
 <script src="./Script/NewFileScript.js" type="text/javascript"></script>
+<script src="./Script/SearchJquery.js" type="text/javascript"></script>
 
 
 <!-- Scripts for Left Tree View of Class name -->
@@ -32,6 +33,7 @@
 
 <!-- CSS for this JSP -->
 <link href="./CSS/NewFileStylecss.css" rel="stylesheet" type="text/css">
+<link href="./CSS/TreeAutoHide.css" rel="stylesheet" type="text/css">
 
 
 </head>
@@ -73,9 +75,14 @@
 		<!-- Table for Tree view and the description for the selected terms -->
 		<table border="0" width="100%" height="100%">
 			<tr height="100%">
-				<td width="20%"><div id="tree"
-						style="height: 500px; width: 100%;"></div></td>
-				<td width="80%">
+				<td>
+					<div id="dock">
+						<div id="files">
+							<div id="tree" style="height: 500px; width: 100%;"></div>
+						</div>
+					</div>
+				</td>
+				<td width="98%">
 
 					<div id="idIframe" style="width: 100%; height: 100%">
 						<iframe id="idIframeDescription" width="100%" height="100%"
@@ -86,7 +93,8 @@
 
 		</table>
 	</div>
-
+	
+	
 	<div style="width: 100%; height: 3%;">
 		<table width="100%" height="100%" border="0">
 			<tr>
@@ -201,6 +209,10 @@
 							<img alt="" src="Image/loading-bar.gif" width="20%" height="20%">
 						</div>
 
+						 
+						
+						<table id="idTableForPageDisplay" align="center"><tr></tr></table>
+						<hr width="100%">
 						<ul id="content">
 							<li style="list-style-type: none;"></li>
 						</ul>
