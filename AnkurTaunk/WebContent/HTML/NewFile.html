@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="date" content="2003-12-02T09:54:03+08:00" />
+<meta http-equiv="imagetoolbar" content="no" />
+<title>Dynamically enlarge image on mouseover and mouseout</title>
+<style type="text/css">
+body {
+	margin: 64px;
+}
+
+#apDiv1 {
+	position: absolute;
+	left: 361px;
+	top: 161px;
+	width: 186px;
+	height: 144px;
+	z-index: 1;
+}
+
+#apDiv2 {
+	position: absolute;
+	left: 306px;
+	top: 127px;
+	width: 300px;
+	height: 164px;
+	z-index: 1;
+}
+
+#apDiv3 {
+	position: absolute;
+	left: 188px;
+	top: 116px;
+	width: 100px;
+	height: 75px;
+	z-index: 1;
+}
+
+#apDiv4 {
+	position: absolute;
+	left: 387px;
+	top: 113px;
+	width: 100px;
+	height: 75px;
+	z-index: 2;
+}
+</style>
+<script type="text/javascript">
+	// <![CDATA[
+	var glbInc, glbDec;
+	function decreaseSizeImage() // will get back to its normal default size
+	{
+		if (glbInc != null) {
+			clearTimeout(glbInc);
+			glbInc = null;
+		}
+		;
+		if (document.getElementById("image1").height > 100) {
+			document.getElementById("image1").height -= 30;
+			document.getElementById("image1").width -= 40;
+			glbDec = setTimeout("decreaseSizeImage()", 32);
+		}
+		;
+	}
+	function increaseSizeImage() {
+		if (glbDec != null) {
+			clearTimeout(glbDec);
+			glbDec = null;
+		}
+		;
+		if (document.getElementById("image1").height < 216) {
+			document.getElementById("image1").height += 30;
+			document.getElementById("image1").width += 40;
+			glbInc = setTimeout("increaseSizeImage()", 32);
+		}
+		;
+	}
+	// ]]>
+</script>
+</head>
+<body>
+	<div id="apDiv3">
+		<a href="#" onmouseover="increaseSizeImage();"
+			onmouseout="decreaseSizeImage();"><img id="image2"
+			src="Image/profile.jpg" width="100" height="75"
+			alt="color" id="image2" /></a>
+	</div>
+	<p>&nbsp;</p>
+	<div id="apDiv4">
+		<a href="#" onmouseover="increaseSizeImage();"
+			onmouseout="decreaseSizeImage();"><img id="image1"
+			src="../Image/profile.jpg" width="100" height="75"
+			/></a>
+	</div>
+	<p>&nbsp;</p>
+	<p id="validation">&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,143 @@
+#containerOne {
+	margin-top: 4cm;
+	position: relative;
+	width: 60%;
+	left: 63%;
+	margin-left: -30%;
+	padding: 20px;
+}
+
+#containerTwo {
+	position: relative;
+	width: 60%;
+	left: 56%;
+	margin-left: -30%;
+	padding: 20px;
+}
+
+
+.box1:hover {       
+    background-color: #a4a4a4;
+    background-image: linear-gradient(#a4a4a4, #a4a4a4);
+    cursor: pointer;
+}   
+
+.box1:active {       
+    background: #a4a4a4;
+    outline: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;        
+}
+
+
+.box11:hover {       
+    background-color: #a4a4a4;
+    background-image: linear-gradient(#a4a4a4, #a4a4a4);
+    cursor: pointer;
+}   
+
+.box11:active {       
+    background: #a4a4a4;
+    outline: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;        
+}
+
+.contleftOne {
+	float: left;
+	margin-right: 10px;
+	width: 30%;
+	position: relative;
+	height: 100%;
+}
+
+.contmiddleOne {
+	float: left;
+	margin-right: 10px;
+	width: 30%;
+	position: relative;
+	height: 100%;
+}
+
+.contrightOne {
+	float: left;
+	width: 30%;
+	position: relative;
+	height: 100%;
+}
+
+.contextremrightOne {
+	float: left;
+	width: 30%;
+	position: relative;
+	height: 100%;
+}
+
+.contleftTwo {
+	float: left;
+	margin-right: 80px;
+	width: 30%;
+	position: relative;
+	height: 100%;
+}
+
+.contmiddleTwo {
+	float: left;
+	margin-right: 80px;
+	width: 30%;
+	position: relative;
+	height: 100%;
+}
+
+.contrightTwo {
+	float: left;
+	width: 30%;
+	position: relative;
+	height: 100%;
+}
+
+.box1 {
+	position: relative;
+	float: left;
+	width: 250px;
+	height: 150px;
+	background: #2e2e2e;
+	margin: 0 15px 15px 0;
+}
+
+.box11 {
+	position: relative;
+	float: left;
+	width: 250px;
+	height: 150px;
+	background: #666;
+	margin: 25px 25px 15px 25px;
+}
+
+.box2 {
+	position: relative;
+	float: left;
+	width: 100px;
+	height: 200px;
+	background: #666;
+	margin: 0 15px 15px 0;
+}
+
+.box3 {
+	position: relative;
+	float: left;
+	width: 100px;
+	height: 100px;
+	background: #666;
+	margin: 0 15px 15px 0;
+}
+
+.fontClass {
+	
+	color:white;
+	font-family: 'Oswald', sans-serif;
+	font-size: 1.2em;
+	height: 150px;
+  	line-height: 150px;
+  	text-align: center;
+  	 border: 1px  #888;
+  	 width: 100%;
+}
